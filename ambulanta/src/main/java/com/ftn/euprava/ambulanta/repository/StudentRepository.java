@@ -11,4 +11,6 @@ public interface StudentRepository extends JpaRepository<Student,Long> {
 
     Student findByJmbg(String jmbg);
     Student findByUsername(String username);
+
+
 }

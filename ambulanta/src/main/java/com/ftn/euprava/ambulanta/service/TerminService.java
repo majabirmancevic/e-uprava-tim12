@@ -2,6 +2,7 @@ package com.ftn.euprava.ambulanta.service;
 
 import com.ftn.euprava.ambulanta.model.*;
 import com.ftn.euprava.ambulanta.model.dto.LekarskiIzvestajResponse;
+import com.ftn.euprava.ambulanta.model.dto.TerminDoktorResponse;
 import com.ftn.euprava.ambulanta.model.dto.TerminResponse;
 import com.ftn.euprava.ambulanta.repository.LekarskiIzvestajRepository;
 import com.ftn.euprava.ambulanta.repository.TerminRepository;
@@ -36,19 +37,30 @@ public class TerminService {
         }
         return response;
     }
-    public List<TerminResponse> getAllTerminByDoktor(Authentication authentication){
+
+    public List<TerminResponse> getAllDoneTerminByStudent(Authentication authentication){
         List<TerminResponse> response = new ArrayList<>();
-        Doktor doktor= doktorService.findByUsername(authentication.getName());
-        for(Termin termin: terminRepository.findAllByDoktor(doktor)){
-            response.add(new TerminResponse(termin));
+        Student student= studentService.findByUsername(authentication.getName());
+        for(Termin termin: terminRepository.findAllByStudent(student)){
+            if(termin.getStatusTermina().equals(StatusTermina.ZAVRSEN)) {
+                response.add(new TerminResponse(termin));
+            }
         }
         return response;
     }
-    public List<TerminResponse> getAllFreeTermin(String doktorName){
-        List<TerminResponse> response = new ArrayList<>();
-        Doktor doktor= doktorService.findByUsername(doktorName);
+    public List<TerminDoktorResponse> getAllTerminByDoktor(Authentication authentication){
+        List<TerminDoktorResponse> response = new ArrayList<>();
+        Doktor doktor= doktorService.findByUsername(authentication.getName());
         for(Termin termin: terminRepository.findAllByDoktor(doktor)){
-            if(termin.getStatusTermina() == StatusTermina.SLOBODAN && !termin.getPocetakTermina().isBefore(LocalDateTime.now())) {
+            response.add(new TerminDoktorResponse(termin));
+        }
+        return response;
+    }
+    public List<TerminResponse> getAllFreeTerminBySpecijalnost(String specijalnost){
+        List<TerminResponse> response = new ArrayList<>();
+        SpecijalnostDoktora spec = SpecijalnostDoktora.returnSpecijalnost(specijalnost);
+        for(Termin termin: terminRepository.findAll()){
+            if(termin.getDoktor().getSpecijalnost().equals(spec) && termin.getStatusTermina() == StatusTermina.SLOBODAN && !termin.getPocetakTermina().isBefore(LocalDateTime.now())) {
                 response.add(new TerminResponse(termin));
             }
         }

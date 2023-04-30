@@ -25,7 +25,7 @@ public class LekarskoUverenjeController {
         return ResponseEntity.ok(lekarskoUverenjeService.addLekarskoUverenje(request));
     }
 
-    // api za proveru lekarskog uverenja
+    // provera studenta da li je uradio lekarski
     @GetMapping("/{jmbg}")
     public ResponseEntity<ProveraUverenjaResponse> proveraUverenja(@PathVariable String jmbg) {
         return ResponseEntity.ok(lekarskoUverenjeService.proveraUverenjaZaStudenta(jmbg));

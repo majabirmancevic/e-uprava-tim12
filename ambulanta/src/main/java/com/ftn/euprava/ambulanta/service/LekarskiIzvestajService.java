@@ -1,18 +1,19 @@
 package com.ftn.euprava.ambulanta.service;
 
 import com.ftn.euprava.ambulanta.exception.BadRequestException;
-import com.ftn.euprava.ambulanta.model.LekarskiIzvestaj;
-import com.ftn.euprava.ambulanta.model.SpecijalnostDoktora;
-import com.ftn.euprava.ambulanta.model.StatusTermina;
-import com.ftn.euprava.ambulanta.model.Termin;
+import com.ftn.euprava.ambulanta.model.*;
 import com.ftn.euprava.ambulanta.model.dto.LekarskiIzvestajRequest;
+import com.ftn.euprava.ambulanta.model.dto.LekarskiIzvestajResponse;
 import com.ftn.euprava.ambulanta.repository.LekarskiIzvestajRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class LekarskiIzvestajService {
@@ -22,6 +23,9 @@ public class LekarskiIzvestajService {
 
     @Autowired
     private TerminService terminService;
+
+    @Autowired
+    private DoktorService doktorService;
 
     public Long addIzvestaj(LekarskiIzvestajRequest request) throws BadRequestException {
 
@@ -72,5 +76,13 @@ public class LekarskiIzvestajService {
         }
     }
 
+    public List<LekarskiIzvestajResponse> getIzvestajiByDoktor(Authentication authentication){
+        Doktor doktor = doktorService.findByUsername(authentication.getName());
+        List<LekarskiIzvestajResponse> response = new ArrayList<>();
+        for(LekarskiIzvestaj izvestaj : lekarskiIzvestajRepository.findAllByTermin_Doktor(doktor)){
+            response.add(new LekarskiIzvestajResponse(izvestaj));
+        }
+        return response;
+    }
 
 }

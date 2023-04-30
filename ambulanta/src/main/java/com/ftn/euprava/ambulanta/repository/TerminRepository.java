@@ -1,6 +1,7 @@
 package com.ftn.euprava.ambulanta.repository;
 
 import com.ftn.euprava.ambulanta.model.Doktor;
+import com.ftn.euprava.ambulanta.model.SpecijalnostDoktora;
 import com.ftn.euprava.ambulanta.model.Student;
 import com.ftn.euprava.ambulanta.model.Termin;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,5 +14,7 @@ public interface TerminRepository extends JpaRepository<Termin,Long>{
 
     List<Termin> findAllByStudent(Student student);
     List<Termin> findAllByDoktor(Doktor doktor);
+
+    List<Termin> findAllByDoktor_Specijalnost(SpecijalnostDoktora specijalnostDoktora);
 
 }
