@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-@Table
+@Table(name = "uverenja")
 public class LekarskoUverenje {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

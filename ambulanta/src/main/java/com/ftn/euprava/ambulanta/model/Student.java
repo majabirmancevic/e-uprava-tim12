@@ -21,5 +21,9 @@ public class Student {
     private String ime;
     private String prezime;
     private Pol pol;
-    private Boolean obavioPregled;
+    private Boolean stomatolog;
+    private Boolean ginekolog;
+
+    private Boolean opstaPraksa;
+
 }

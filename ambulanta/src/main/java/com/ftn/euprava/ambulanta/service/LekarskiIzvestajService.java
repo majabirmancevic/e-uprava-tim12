@@ -2,6 +2,7 @@ package com.ftn.euprava.ambulanta.service;
 
 import com.ftn.euprava.ambulanta.exception.BadRequestException;
 import com.ftn.euprava.ambulanta.model.LekarskiIzvestaj;
+import com.ftn.euprava.ambulanta.model.SpecijalnostDoktora;
 import com.ftn.euprava.ambulanta.model.StatusTermina;
 import com.ftn.euprava.ambulanta.model.Termin;
 import com.ftn.euprava.ambulanta.model.dto.LekarskiIzvestajRequest;
@@ -29,6 +30,7 @@ public class LekarskiIzvestajService {
         if(poruka.equals("")) {
 
             termin.setStatusTermina(StatusTermina.ZAVRSEN);
+            setSpecijalnost(termin);
             terminService.save(termin);
 
             LekarskiIzvestaj izvestaj = new LekarskiIzvestaj();
@@ -42,7 +44,7 @@ public class LekarskiIzvestajService {
         throw new BadRequestException(poruka);
     }
 
-    private String validate(Termin termin) {
+    public String validate(Termin termin) {
         String message = "";
         if (termin == null) {
             message = "Termin ne postoji";
@@ -59,4 +61,16 @@ public class LekarskiIzvestajService {
 //        }
         return message;
     }
+
+    private void setSpecijalnost(Termin termin){
+        if(termin.getDoktor().getSpecijalnost().equals(SpecijalnostDoktora.GINEKOLOG)){
+            termin.getStudent().setGinekolog(true);
+        } else if(termin.getDoktor().getSpecijalnost().equals(SpecijalnostDoktora.STOMATOLOG)){
+            termin.getStudent().setStomatolog(true);
+        } else {
+            termin.getStudent().setOpstaPraksa(true);
+        }
+    }
+
+
 }
