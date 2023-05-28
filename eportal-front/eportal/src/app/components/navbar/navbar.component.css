@@ -1,0 +1,34 @@
+.navbar{
+    background-color: rgba(9, 26, 102, 0.836);
+}
+
+.navbar-brand{
+    color: rgb(0, 0, 0);
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 25px;  
+    font-family: Sofia, serif;
+    
+}
+
+.e{  
+    padding: 2px;
+    margin-right: 8px;
+
+    font-style: oblique;
+}
+
+.navbar-text{   
+   text-align: end;
+}
+
+
+.navbar:hover {
+    background-image: linear-gradient(180deg,rgba(216, 0, 0, 0.904), rgba(9, 26, 102, 0.836),rgb(255, 255, 255));
+  }
+
+  .nav-link{
+    color: aliceblue;
+  }
+
+  
