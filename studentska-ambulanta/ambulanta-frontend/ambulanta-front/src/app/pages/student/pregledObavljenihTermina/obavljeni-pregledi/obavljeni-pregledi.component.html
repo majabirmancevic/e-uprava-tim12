@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h4 style="text-align: center; margin-top: 15px">
+        Istorija obavljenih pregleda
+      </h4>
+    </div>
+    <div class="col-md-12">
+      <table class="table table-hover" style="margin-top: 20px">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Pocetak termina</th>
+            <th scope="col">Kraj termina</th>
+            <th scope="col">Ime doktora</th>
+            <th scope="col">Specijalnost</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr *ngFor="let termin of termini">      
+                    <td>{{termin.pocetakTermina}}</td>     
+                    <td>{{termin.krajTermina}}</td>       
+                    <td>{{termin.imeDoktora}}</td>       
+                    <td>{{termin.specijalnostDoktora}}</td>   
+                    <td><button class="btn btn-light"
+                        style="width: fit-content"
+                        type="button"
+                        (click)="goToIzvestaj(termin.id)">
+                        Pregled izvestaja
+                        </button>
+                    </td>    
+                </tr>         -->
+          <tr>
+            <td>Proba</td>
+            <td>Proba</td>
+            <td>Proba</td>
+            <td>Proba</td>
+            <td>
+              <button
+                class="btn btn-light"
+                style="width: fit-content"
+                type="button"
+                (click)="goTo()"
+                >
+                Pregled izvestaja
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button class="btn btn-back btn-sm btn-light" type="button" (click)="goBack()">
+      <i class="bi bi-arrow-left"></i>Nazad
+    </button>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+#pregled{
+    margin-top: 45px;
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    color: rgba(9, 26, 102, 0.836);
+}
+
+hr {
+    color: #a9ebff;
+    background-color: #16b3be;
+    height: 5px;
+    border-radius: 4px;
+    margin-top: 50px;
+     
+    margin-left:35% !important;
+    margin-right:35% !important;
+}
+
+.btn{
+background-color: #0bd2e0a1;
+font-size: 20px;  
+color: white;
+margin-left:47% !important;
+margin-right:48% !important;
+padding-left: 10px;
+padding-right: 10px;
+margin-bottom: 20px;
+}

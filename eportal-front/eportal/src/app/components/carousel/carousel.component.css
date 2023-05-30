@@ -1,0 +1,29 @@
+.carousel > {
+    width:auto; /* Yeap you can change the width and height*/
+    height: 400px;
+}
+
+img{
+    opacity: 70%;
+}
+.w-100 {
+    width: 100% !important;
+    height: 80vh;
+  }
+
+#eFakultet{
+    padding: 5px;
+    font-weight: bold;
+}
+h3{
+    font-weight: bold;
+}
+p{
+    font-size: 30px;
+ }
+
+.carousel-caption{
+    text-align: center; 
+background-color: rgba(240, 248, 255, 0.61);
+   color: rgba(9, 26, 102, 0.836);
+}

@@ -1,0 +1,61 @@
+<div class="container">
+  <h3 class="h3">Pregled usluga</h3>
+  <p>
+    <a
+      class="btn btn-light"
+      data-bs-toggle="collapse"
+      href="#zakazivanje"
+      role="button"
+      aria-expanded="false"
+      aria-controls="collapseExample"
+    >
+      Uvid u slobodne termina
+    </a>
+  </p>
+  <div class="collapse" id="zakazivanje">
+    <div class="card card-body">
+      <p>
+        Izborom termina, studenti imaju mogucnost elektronskog zakazivanja
+        lekarskih pregleda potrebnih za useljenje u studentski dom .
+      </p>
+      <button
+        class="btn btn-light"
+        style="width: fit-content"
+        type="button"
+        [routerLink]="['termini']"
+      >
+        Pokreni uslugu
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <button
+    class="btn btn-dugme"
+    style="background-color: rgba(0, 157, 255, 0.555)"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#istorijaPregleda"
+    aria-expanded="false"
+    aria-controls="collapseExample"
+  >
+    Istorija lekarskih pregleda
+  </button>
+  <div class="collapse" id="istorijaPregleda">
+    <div class="card card-body">
+      <p>
+        Studenti imaju mogucnost uvida u istoriju uradjenih lekarskih pregleda
+        kao i izvestaja specijaliste.
+      </p>
+      <button
+        class="btn btn-light"
+        style="width: fit-content"
+        type="button"
+        (click)="gotoObavljeniPregledi()"
+      >
+        Pokreni uslugu
+      </button>
+    </div>
+  </div>
+</div>
