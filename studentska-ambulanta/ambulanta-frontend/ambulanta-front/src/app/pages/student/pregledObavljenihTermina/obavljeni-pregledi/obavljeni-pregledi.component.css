@@ -1,0 +1,11 @@
+.btn-back{
+    background-color: rgba(102, 174, 232, 0.616);
+    color: aliceblue;
+    font-weight: bold;
+    width: fit-content;
+    margin-left: 10px;
+}
+
+.bi{
+    margin-right: 2px;
+}

@@ -1,0 +1,60 @@
+<!-- <form class="form-inline">  
+  <div class="form-group">  
+    <div class="input-group">  
+      <input class="form-control" placeholder="yyyy-mm-dd"  
+             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">  
+      <div class="input-group-append">  
+        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>  
+      </div>  
+    </div>  
+  </div>  
+</form>   -->
+<div class="container">
+  <form class="row">
+    <div class="col-4">
+      <h4 class="py-4">Izaberi datum</h4>
+      <div class="input-group date" id="datepicker">
+        <input class="form-control" placeholder="yyyy-mm-dd"  type="text"
+             name="dp" [(ngModel)]="selectedItem" ngbDatepicker #d="ngbDatepicker" [minDate]="minDate" readonly> 
+        <div class="input-group-append">  
+          <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+            <i class="bi bi-calendar-date"></i>
+          </button>  
+        </div> 
+      </div>
+    </div>
+    <div class="col-4">
+      <h4 class="py-4">Izaberi specijalistu</h4>
+      <select [(ngModel)]="specijalnost" class="form-select" aria-label="Default select example">
+        <option value="stomatolog" >Stomatolog</option>
+        <option value="opstaPraksa">Opsta praksa</option>
+        <option value="ginekolog">Ginekolog</option>
+      </select>
+    </div>
+    <div class="col-4" style="margin-top: 82px;">
+      <button type="button" class="btn" style="background-color: rgba(138, 220, 255, 0.853);" (click)="getSlobodniTermini()">Pretrazi</button>
+    </div>   
+  </form>
+  <div class="row " >
+    <table  class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Pocetak termina</th>
+          <th scope="col">Kraj termina</th>
+          <th scope="col">Ime doktora</th>
+          <th scope="col">Specijalnost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let termin of termini">      
+          <td>{{termin.pocetakTermina}}</td>     
+          <td>{{termin.krajTermina}}</td>       
+          <td>{{termin.imeDoktora}}</td>       
+          <td>{{termin.specijalnostDoktora}}</td>       
+        </tr>        
+      </tbody>
+    </table>
+  </div>
+  <button type="button" class="btn btn-success">Zakazi</button>
+  <button type="button" class="btn" style="color:white; background-color: rgba(38, 67, 80, 0.555); margin-left: 5px;" (click)="goBack()">Nazad</button>
+</div>

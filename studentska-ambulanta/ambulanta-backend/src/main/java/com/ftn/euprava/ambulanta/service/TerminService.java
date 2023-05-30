@@ -64,7 +64,7 @@ public class TerminService {
         LocalDateTime dateTimePocetak = date.atTime(8,00,00);
         LocalDateTime dateTimeKraj = date.atTime(20,00,00);
         List<TerminResponse> response = new ArrayList<>();
-        SpecijalnostDoktora spec = SpecijalnostDoktora.returnSpecijalnost(specijalnost);
+        SpecijalnostDoktora spec = SpecijalnostDoktora.returnSpecijalnost(specijalnost.toUpperCase());
         for(Termin termin: terminRepository.findAll()){
             if(termin.getDoktor().getSpecijalnost().equals(spec) && termin.getStatusTermina() == StatusTermina.SLOBODAN && !termin.getPocetakTermina().isBefore(dateTimePocetak) && !termin.getKrajTermina().isAfter(dateTimeKraj)) {
                 response.add(new TerminResponse(termin));
@@ -77,7 +77,7 @@ public class TerminService {
         Student student= studentService.findByUsername(authentication.getName());
         Boolean isStudentBudzet = studentService.checkStatusStudenta(student.getJmbg());
         Boolean isKarticaAktivna = studentService.checkStatusKartice(student.getJmbg());
-        
+
         if(isStudentBudzet == null || isKarticaAktivna == null){
             throw new NotAcceptableException("Greska! Student nije pronadjen!");
         } else if(isStudentBudzet == true && isKarticaAktivna == true){

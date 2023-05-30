@@ -39,8 +39,8 @@ public class TerminController {
         return ResponseEntity.ok().body(terminService.getAllFreeTerminBySpecijalnostAndDate(specijalnost,date));
     }
 
-    @GetMapping("/{termin-id}/izvestaj")
-    public ResponseEntity<LekarskiIzvestajResponse> getLekarskiIzvestaj(@PathVariable("termin-id") Long terminId){
+    @GetMapping("/{terminId}/izvestaj")
+    public ResponseEntity<LekarskiIzvestajResponse> getLekarskiIzvestaj(@PathVariable("terminId") Long terminId){
         return ResponseEntity.ok().body(terminService.getLekarskiIzvestaj(terminId));
 
     }
