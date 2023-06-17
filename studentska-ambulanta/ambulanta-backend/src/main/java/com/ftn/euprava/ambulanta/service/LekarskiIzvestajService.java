@@ -27,11 +27,11 @@ public class LekarskiIzvestajService {
     @Autowired
     private DoktorService doktorService;
 
-    public Long addIzvestaj(LekarskiIzvestajRequest request) throws BadRequestException {
+    public Boolean addIzvestaj(LekarskiIzvestajRequest request){
 
         Termin termin = terminService.findById(request.getTerminId());
-        String poruka = validate(termin);
-        if(poruka.equals("")) {
+
+        if(termin != null && !termin.getStatusTermina().equals(StatusTermina.ZAVRSEN)) {
 
             termin.setStatusTermina(StatusTermina.ZAVRSEN);
             setSpecijalnost(termin);
@@ -41,11 +41,12 @@ public class LekarskiIzvestajService {
             izvestaj.setTermin(termin);
             izvestaj.setOpis(request.getOpis());
 
+
             LekarskiIzvestaj savedReport = lekarskiIzvestajRepository.save(izvestaj);
 
-            return savedReport.getId();
+            return true;
         }
-        throw new BadRequestException(poruka);
+        return false;
     }
 
     public String validate(Termin termin) {
@@ -53,7 +54,7 @@ public class LekarskiIzvestajService {
         if (termin == null) {
             message = "Termin ne postoji";
         }
-        if (!termin.getStatusTermina().equals(StatusTermina.ZAKAZAN)) {
+        if (!termin.getStatusTermina().equals(StatusTermina.ZAVRSEN)) {
             message = "Izvestaj vec postoji";
         }
         // TODO: kako testirati?

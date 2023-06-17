@@ -1,0 +1,103 @@
+<div class="container">
+  <h3 class="h3">Pregled usluga</h3>
+  <div class="row">
+    <div class="col-sm-4">
+      <p>
+        <a
+          class="btn btn-light"
+          data-bs-toggle="collapse"
+          href="#zakazivanje"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample"
+        >
+          Uvid u sve termine
+        </a>
+      </p>
+      <div class="collapse" id="zakazivanje">
+        <div class="card card-body" style="margin-bottom: 20px">
+          <p>
+            Izborom zakazanog termina, doktori imaju mogucnost da izdaju lekarski
+            izvestaj pregleda .
+          </p>
+          <button
+            class="btn btn-light"
+            style="width: fit-content"
+            type="button"
+            (click)="gotoTermini()"
+          >
+            Pokreni uslugu
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-sm-4">
+      <button
+        class="btn btn-dugme"
+        style="background-color: rgba(0, 157, 255, 0.555)"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#istorijaPregleda"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        Istorija lekarskih izvestaja
+      </button>
+      <div
+        class="collapse"
+        id="istorijaPregleda"
+        style="margin-top: 20px; margin-bottom: 20px"
+      >
+        <div class="card card-body">
+          <p>
+            Doktori imaju mogucnost uvida u istoriju izdatih lekarskih
+            izvestaja, kao i njenu pretragu.
+          </p>
+          <button
+            class="btn btn-light"
+            style="width: fit-content"
+            type="button"
+            (click)="gotoIstorijaIzvestaja()"
+          >
+            Pokreni uslugu
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <button
+        class="btn btn-dugme"
+        style="
+          background-color: rgb(177, 225, 255);
+          margin-bottom: 20px;
+          width: max-content;
+        "
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#izdavanje"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        Kreiranje lekarskih uverenja
+      </button>
+      <div class="collapse" id="izdavanje">
+        <div class="card card-body">
+          <p>
+            Doktori opste prakse imaju mogucnost uvida u listu studenata koji
+            su obavili potrebne preglede, kao i izdavanja lekarskih uverenja
+            tim studentima.
+          </p>
+          <button
+            class="btn btn-light"
+            style="width: fit-content"
+            type="button"
+            (click)="gotoKreiranjeUverenja()"
+          >
+            Pokreni uslugu
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

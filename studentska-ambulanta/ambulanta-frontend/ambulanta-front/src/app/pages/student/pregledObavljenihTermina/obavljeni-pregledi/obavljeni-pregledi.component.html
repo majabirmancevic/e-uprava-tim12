@@ -17,35 +17,19 @@
           </tr>
         </thead>
         <tbody>
-          <!-- <tr *ngFor="let termin of termini">      
-                    <td>{{termin.pocetakTermina}}</td>     
-                    <td>{{termin.krajTermina}}</td>       
-                    <td>{{termin.imeDoktora}}</td>       
-                    <td>{{termin.specijalnostDoktora}}</td>   
-                    <td><button class="btn btn-light"
-                        style="width: fit-content"
-                        type="button"
-                        (click)="goToIzvestaj(termin.id)">
-                        Pregled izvestaja
-                        </button>
-                    </td>    
-                </tr>         -->
-          <tr>
-            <td>Proba</td>
-            <td>Proba</td>
-            <td>Proba</td>
-            <td>Proba</td>
-            <td>
-              <button
-                class="btn btn-light"
-                style="width: fit-content"
-                type="button"
-                (click)="goTo()"
-                >
-                Pregled izvestaja
-              </button>
-            </td>
-          </tr>
+          <tr *ngFor="let termin of termini">      
+              <td>{{termin.pocetakTermina}}</td>     
+              <td>{{termin.krajTermina}}</td>       
+              <td>{{termin.imeDoktora}}</td>       
+              <td>{{termin.specijalnostDoktora}}</td>   
+              <td><button class="btn btn-light"
+                  style="width: fit-content"
+                  type="button"
+                  (click)="goToIzvestaj(termin.id)">
+                  Pregled izvestaja
+                  </button>
+              </td>    
+            </tr>        
         </tbody>
       </table>
     </div>

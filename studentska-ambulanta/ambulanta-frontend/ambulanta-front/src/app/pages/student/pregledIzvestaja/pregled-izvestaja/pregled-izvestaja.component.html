@@ -1,17 +1,14 @@
 <div class="container">
   <div class="row card text-center">
-    <div class="card-header">IZVESTAJ</div>
+    <div class="card-header">Lekarski izvestaj za {{izvestajResponse.studentImePrezime}}, JMBG : {{izvestajResponse.studentJmbg}}</div>
     <div class="card-body">
-      <blockquote class="blockquote mb-0">
+      <blockquote class="blockquote mb-0" style="width: fit-content;">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-          posuere erat a ante. Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit. Integer posuere erat a ante. Lorem ipsum dolor sit
-          amet, consectetur adipiscing elit. Integer posuere erat a ante.
+          {{izvestajResponse.opis}}
         </p>
-        <footer class="blockquote-footer">
+        <!-- <footer class="blockquote-footer">
           Specijalista :<cite title="Source Title">Ime</cite>
-        </footer>
+        </footer> -->
       </blockquote>
     </div>
   </div>

@@ -1,0 +1,38 @@
+<div class="container text-center">
+  <h3>{{ title }}</h3>
+</div>
+<div class="container">
+  <div class="row">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Jmbg studenta</th>
+          <th><button type="button"
+            class="btn btn-sm btn-primary"(click)="goToUverenja()">Sva uverenja</button></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of studenti | filter : searchText">
+          <td>{{ student.ime }} {{ student.prezime }}</td>
+          <td>{{ student.jmbg }}</td>
+
+          <td>
+            <button
+              data-toggle="modal"
+              ata-target="#exampleModal"
+              #modal
+              type="button"
+              class="btn btn-sm btn-light"
+              (click)="kreiranje(student.ime, student.prezime, student.jmbg)"
+            >
+              Kreiraj uverenje
+            </button>
+
+    
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

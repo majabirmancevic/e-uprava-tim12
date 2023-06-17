@@ -1,4 +1,6 @@
 export class IzvestajResponse{
-    id? :number;
-    opis? :number;
+    id! :number;
+    opis! :string;
+    studentImePrezime!:string;
+    studentJmbg!:string;
 }

@@ -1,11 +1,11 @@
 package com.ftn.euprava.ambulanta.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
@@ -14,10 +14,16 @@ import lombok.NoArgsConstructor;
 @Table
 public class Doktor {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @Column(unique=true)
     private String jmbg;
     private String ime;
     private String prezime;
     @Column(unique=true)
     private String username;
+
+    private String lozinka;
     private SpecijalnostDoktora specijalnost;
 }

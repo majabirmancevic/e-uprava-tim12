@@ -18,4 +18,8 @@ export class CardsStudentComponent implements OnInit {
   gotoObavljeniPregledi(){
     this.router.navigate(['obavljeni-pregledi']);
   }
+
+  gotoTermini(){
+    this.router.navigate(['termini']);
+  }
 }

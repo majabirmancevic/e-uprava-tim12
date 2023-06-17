@@ -1,9 +1,11 @@
 package com.ftn.euprava.ambulanta.model;
 
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
@@ -19,6 +21,7 @@ public class Student {
     private String jmbg;
     @Column(unique=true)
     private String username;
+    private String lozinka;
     private String ime;
     private String prezime;
     private Pol pol;

@@ -1,5 +1,6 @@
 package com.ftn.euprava.ambulanta.service;
 
+import com.ftn.euprava.ambulanta.exception.BadRequestException;
 import com.ftn.euprava.ambulanta.exception.NotAcceptableException;
 import com.ftn.euprava.ambulanta.model.*;
 import com.ftn.euprava.ambulanta.model.dto.LekarskiIzvestajResponse;
@@ -8,11 +9,14 @@ import com.ftn.euprava.ambulanta.model.dto.TerminResponse;
 import com.ftn.euprava.ambulanta.repository.LekarskiIzvestajRepository;
 import com.ftn.euprava.ambulanta.repository.TerminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.datetime.DateFormatter;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,10 +63,17 @@ public class TerminService {
         return response;
     }
     public List<TerminResponse> getAllFreeTerminBySpecijalnostAndDate(String specijalnost,String stringDate){
-        LocalDate date = LocalDate.parse(stringDate);
-        System.out.println("-- IZABRAN DATUM: " + date);
-        LocalDateTime dateTimePocetak = date.atTime(8,00,00);
-        LocalDateTime dateTimeKraj = date.atTime(20,00,00);
+        //LocalDate date = LocalDate.parse(stringDate);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateFormatter dateFormatter = new DateFormatter("yyyy-MM-dd");
+
+        LocalDate datum = LocalDate.parse(stringDate,formatter);
+
+
+
+        System.out.println("-- IZABRAN DATUM: " + datum);
+        LocalDateTime dateTimePocetak = datum.atTime(8,00,00);
+        LocalDateTime dateTimeKraj = datum.atTime(20,00,00);
         List<TerminResponse> response = new ArrayList<>();
         SpecijalnostDoktora spec = SpecijalnostDoktora.returnSpecijalnost(specijalnost.toUpperCase());
         for(Termin termin: terminRepository.findAll()){
@@ -77,19 +88,31 @@ public class TerminService {
         Student student= studentService.findByUsername(authentication.getName());
         Boolean isStudentBudzet = studentService.checkStatusStudenta(student.getJmbg());
         Boolean isKarticaAktivna = studentService.checkStatusKartice(student.getJmbg());
+        Termin termin = terminRepository.findById(terminId).orElse(null);
+
+        List<Termin> termini = terminRepository.findAll();
+
+        for(Termin t : termini){
+            if(t.getStudent() != null){
+                if(t.getStudent().getJmbg().equals(student.getJmbg()) && t.getStatusTermina().equals(StatusTermina.ZAKAZAN) && t.getDoktor().getJmbg().equals(termin.getDoktor().getJmbg())){
+                    throw new BadRequestException("Ovaj termin ste vec rezervisali! ");
+                }
+                if(t.getStudent().getJmbg().equals(student.getJmbg()) && t.getPocetakTermina().equals(termin.getPocetakTermina()) && t.getKrajTermina().equals(termin.getKrajTermina())){
+                    throw new BadRequestException("U ovom terminu vec imate zakazan pregled! Izaberite drugi termin.");
+                }
+            }
+        }
 
         if(isStudentBudzet == null || isKarticaAktivna == null){
-            throw new NotAcceptableException("Greska! Student nije pronadjen!");
-        } else if(isStudentBudzet == true && isKarticaAktivna == true){
-            Termin termin = terminRepository.findById(terminId).orElse(null);
+            throw new UsernameNotFoundException("Greska! Student nije pronadjen!");
+        }else if(isStudentBudzet == true && isKarticaAktivna == true){
             assert termin != null;
             termin.setStatusTermina(StatusTermina.ZAKAZAN);
             termin.setStudent(student);
             terminRepository.save(termin);
-        } else {
-            throw new NotAcceptableException("Student nije na budzetu ili nema aktivnu studentsku karticu!");
+        }else {
+            throw new BadRequestException("Student nije na budzetu ili nema aktivnu studentsku karticu!");
         }
-
     }
 
 
@@ -103,6 +126,8 @@ public class TerminService {
         }else{
             response.setOpis(lekarskiIzvestaj.getOpis());
             response.setId(lekarskiIzvestaj.getId());
+            response.setStudentImePrezime(lekarskiIzvestaj.getTermin().getStudent().getIme() + " " + (lekarskiIzvestaj.getTermin().getStudent().getPrezime()));
+            response.setStudentJmbg((lekarskiIzvestaj.getTermin().getStudent().getJmbg()));
         }
 
         return response;

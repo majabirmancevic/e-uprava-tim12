@@ -1,0 +1,19 @@
+<div class="card main text-center container">
+    <div class="row">
+        <div class="card-header col-sm-12">
+            Kreiranje izvestaja
+        </div>
+        <div class="card-body col-sm-12">
+            <h5 class="card-title">Unesite tekst izvestaja</h5>
+            <div class="col-sm-4 well shadow-textarea">
+                <form accept-charset="UTF-8" [formGroup]="dodavanjeIzvestaja" (ngSubmit)="kreirajIzvestaj()">
+                    <textarea class="form-control " [formControlName]="'opis'" 
+                    maxlength="200" placeholder="" rows="5" ></textarea>
+                    <br>
+                    <button class="btn btn-sm btn-primary" type="submit">Kreiraj</button>
+                    <button class="btn btn-sm btn-secondary" type="button" (click)="goBack()">Otkazi</button>
+                </form>
+            </div> 
+        </div>
+    </div> 
+</div>

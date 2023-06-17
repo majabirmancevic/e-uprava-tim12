@@ -16,8 +16,9 @@ import java.time.format.DateTimeFormatter;
 @Data
 public class TerminDoktorResponse {
     private Long id;
-    private Student student;
-    private Doktor doktor;
+    private String imeStudenta;
+    private String jmbgStudenta;
+
     private String pocetakTermina;
     private String krajTermina;
     private String statusTermina;
@@ -26,8 +27,15 @@ public class TerminDoktorResponse {
     public TerminDoktorResponse(Termin termin){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         this.id = termin.getId();
-        this.student = termin.getStudent();
-        this.doktor = termin.getDoktor();
+        if(termin.getStudent() != null){
+            this.imeStudenta = termin.getStudent().getIme() + " " + termin.getStudent().getPrezime();
+            this.jmbgStudenta = termin.getStudent().getJmbg();
+
+        }else{
+            this.imeStudenta = "-";
+            this.jmbgStudenta = "-";
+
+        }
         this.pocetakTermina = termin.getPocetakTermina().format(formatter);
         this.krajTermina = termin.getKrajTermina().format(formatter);
         this.statusTermina = termin.getStatusTermina().toString();
