@@ -3,6 +3,8 @@ package com.ftn.euprava.ambulanta.service;
 import com.ftn.euprava.ambulanta.model.Student;
 import com.ftn.euprava.ambulanta.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -15,7 +17,13 @@ public class StudentService {
     @Autowired
     StudentRepository studentRepository;
     @Autowired
+    @Lazy
     RestTemplate restTemplate ;
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
 
 
@@ -28,7 +36,7 @@ public class StudentService {
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
         HttpEntity request = new HttpEntity(headers);
-        String url = "http://localhost:8080/api/student/{jmbg}";
+        String url = "http://localhost:9090/api/servis/budzet/{jmbg}";
 
         ResponseEntity<Boolean> response = this.restTemplate.exchange(url,HttpMethod.GET,request,Boolean.class,jmbg);
         if(response.getStatusCode() == HttpStatus.OK) {
@@ -43,7 +51,7 @@ public class StudentService {
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
         HttpEntity request = new HttpEntity(headers);
-        String url = "http://localhost:8082/api/student/{jmbg}";
+        String url = "http://localhost:9090/api/servis/kartica/{jmbg}";
 
         ResponseEntity<Boolean> response = this.restTemplate.exchange(url,HttpMethod.GET,request,Boolean.class,jmbg);
         if(response.getStatusCode() == HttpStatus.OK) {
@@ -52,5 +60,11 @@ public class StudentService {
             return null;
         }
     }
+
+    public void save(Student student){
+        studentRepository.save(student);
+    }
+
+
 
 }

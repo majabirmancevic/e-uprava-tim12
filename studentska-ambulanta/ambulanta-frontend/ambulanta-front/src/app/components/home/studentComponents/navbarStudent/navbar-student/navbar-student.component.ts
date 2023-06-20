@@ -12,4 +12,9 @@ export class NavbarStudentComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  logout(){
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('role')
+    window.location.href = `http://localhost:4200/logout`;  
+  }
 }

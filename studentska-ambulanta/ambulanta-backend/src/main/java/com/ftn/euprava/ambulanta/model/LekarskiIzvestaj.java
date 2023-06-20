@@ -1,9 +1,11 @@
 package com.ftn.euprava.ambulanta.model;
 
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
@@ -16,6 +18,7 @@ public class LekarskiIzvestaj {
     private Long id;
     @OneToOne
     private Termin termin;
+
     @Column(columnDefinition = "TEXT")
     private String opis;
 

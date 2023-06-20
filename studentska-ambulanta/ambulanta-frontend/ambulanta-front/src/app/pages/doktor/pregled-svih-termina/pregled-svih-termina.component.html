@@ -1,0 +1,48 @@
+<div class="container text-center">
+  <h1>{{ title }}</h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="search-hero">
+      <input
+        class="form-control"
+        type="text"
+        name="search"
+        [(ngModel)]="searchText"
+        autocomplete="off"
+        placeholder="Pretrazite termine.."
+      />
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Jmbg studenta</th>
+          <th>Pocetak termina</th>
+          <th>Kraj termina</th>
+          <th>Status termina</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let termin of termini | filter : searchText">
+          <td>{{ termin.imeStudenta }}</td>
+          <td>{{ termin.jmbgStudenta }}</td>
+          <td>{{ termin.pocetakTermina }}</td>
+          <td>{{ termin.krajTermina }}</td>
+          <td>{{ termin.statusTermina }}</td>
+          <td>
+            <button
+              *ngIf="termin.statusTermina == 'ZAKAZAN'"
+              type="button"
+              class="btn btn-sm btn-light"
+              (click)="goToDodavanjeIzvestaja(termin.id)"
+            >
+              Dodaj izvestaj
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

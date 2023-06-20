@@ -19,12 +19,48 @@ hr {
 }
 
 .btn{
-background-color: #0bd2e0a1;
-font-size: 20px;  
+margin-top: 20px;
+background-color: #1999ee83;
+font-size: 15px;  
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 color: white;
-margin-left:47% !important;
-margin-right:48% !important;
-padding-left: 10px;
+/* margin-left:47% !important;
+margin-right:48% !important; */
+/* padding-left: 10px;
 padding-right: 10px;
-margin-bottom: 20px;
+margin-bottom: 20px; */
+width: max-content;
 }
+.btn:hover{
+    margin-top: 20px;
+    background-color: #2784eebe;
+    font-size: 15px;  
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    /* margin-left:47% !important;
+    margin-right:48% !important; */
+    /* padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 20px; */
+    width: max-content;
+    }
+
+.servisi{
+    margin-left:20% !important;
+    margin-right:10% !important;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgba(9, 26, 102, 0.836);
+    font-size: larger;
+
+}
+
+.usluge{
+    margin-left:15% !important;
+    margin-right:10% !important;
+    font-size: small;
+    font-family:  sans-serif;
+    font-weight: bold;
+    color: rgba(27, 76, 184, 0.747);
+
+}
+

@@ -25,12 +25,14 @@ public class TerminController {
     private TerminService terminService;
 
     @GetMapping("/history/student")
+    @PreAuthorize("hasRole('STUDENT')")
     public ResponseEntity<List<TerminResponse>> getZavrseniTerminiStudenta(Authentication authentication) {
         return ResponseEntity.ok().body(terminService.getAllDoneTerminByStudent(authentication) );
     }
 
     @GetMapping("/doktor")
-    public ResponseEntity<List<TerminDoktorResponse>> getAppointmentByLoggedDoctor(Authentication authentication) {
+    @PreAuthorize("hasRole('DOKTOR')")
+    public ResponseEntity<List<TerminDoktorResponse>> getTerminiByLoggedDoctor(Authentication authentication) {
         return ResponseEntity.ok().body(terminService.getAllTerminByDoktor(authentication));
     }
 
@@ -45,9 +47,10 @@ public class TerminController {
 
     }
 
-    @PutMapping("/{termin-id}")
-    public void zakaziTermin(@PathVariable("termin-id") Long termin_id, Authentication authentication) {
-        terminService.zakaziTermin(termin_id, authentication);
+    @PutMapping("/{terminId}")
+    @PreAuthorize("hasRole('STUDENT')")
+    public void zakaziTermin(@PathVariable("terminId") Long terminId, Authentication authentication) {
+        terminService.zakaziTermin(terminId, authentication);
     }
 
 }

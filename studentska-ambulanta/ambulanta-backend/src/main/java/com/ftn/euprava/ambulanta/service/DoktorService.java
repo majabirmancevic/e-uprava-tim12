@@ -21,4 +21,8 @@ public class DoktorService {
     public List<Doktor> findBySpecijalnost(String username){
         return doktorRepository.findAllBySpecijalnost(username);
     }
+
+    public void save(Doktor doktor){
+        doktorRepository.save(doktor);
+    }
 }

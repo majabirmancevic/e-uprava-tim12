@@ -1,0 +1,33 @@
+<div class="container text-center">
+  <h1>Pregled svih izdatih izvestaja</h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="search-hero">
+      <input
+        class="form-control"
+        type="text"
+        name="search"
+        [(ngModel)]="searchText"
+        autocomplete="off"
+        placeholder="Pretrazite termine.."
+      />
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Jmbg studenta</th>
+          <th>Opis</th>
+          <th></th>      
+      </thead>
+      <tbody>
+        <tr *ngFor="let izvestaj of izvestaji | filter : searchText">
+          <td>{{ izvestaj.studentImePrezime }}</td>
+          <td>{{ izvestaj.studentJmbg }}</td>
+          <td>{{ izvestaj.opis }}</td>     
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TerminResponse } from 'src/app/model/dto/TerminiResponse';
 import { TerminiService } from 'src/app/services/termini.service';
 
@@ -12,9 +12,13 @@ export class ObavljeniPreglediComponent implements OnInit {
  
   termini! : TerminResponse[]
 
-  constructor(private router:Router,private terminiService:TerminiService) { }
+  constructor(private router:Router,private terminiService:TerminiService, private activatedRouter:ActivatedRoute) { }
 
   ngOnInit(): void {
+    // if(localStorage.getItem('JWT-TOKEN') == null){
+    //   localStorage.setItem('JWT-TOKEN', this.activatedRouter.snapshot.params['token']);
+    // }
+    this.getObavljeniPreglediStudenta();
   }
 
   getObavljeniPreglediStudenta(){
@@ -24,7 +28,7 @@ export class ObavljeniPreglediComponent implements OnInit {
   }
 
   goToIzvestaj(terminId:number){
-    this.router.navigate(['izvestaj',terminId]);
+    this.router.navigate(['pregled-izvestaj',terminId]);
   }
 
   goTo(){
@@ -32,6 +36,6 @@ export class ObavljeniPreglediComponent implements OnInit {
   }
 
   goBack(){
-    this.router.navigate(['student']);
+    this.router.navigate(['']);
   }
 }

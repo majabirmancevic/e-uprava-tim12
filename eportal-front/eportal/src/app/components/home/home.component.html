@@ -1,6 +1,47 @@
 <app-carousel></app-carousel>
-<hr id="linija" />
-<p id="pregled">Za koriscenje usluga potrebno je da se prijavite na portal e-Uprave.</p>
+<!-- <p id="pregled">Za koriscenje usluga potrebno je da se prijavite na portal e-Uprave.</p>
 <button class="btn nav-link">
     <a  aria-current="page" (click)="login()">Prijava</a>
-</button>
+</button> -->
+<!-- <hr id="linija" /> -->
+
+<p id="pregled">Pregled usluga</p>
+<div class="container">
+    <div class="row servisi">
+        <p class="col-4" *ngIf="isRole() != 'gradjanin'">Studentska ambulanta</p>
+        <p class="col-4" *ngIf="isRole() != 'gradjanin'">Studentski dom</p>
+        <p class="col-4">Fakultet</p>
+    </div>
+    <div class="row usluge">
+        <div class="col-4">   
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngIf="isRole() == 'student'" ><a aria-current="page" class="list-group-item" (click)="goToZakazivanje()" >Pregled slobodih termina za zakazivanje</a></li>
+                <li *ngIf="isRole() == 'student'" class="list-group-item"><a  aria-current="page" class="list-group-item" (click)="goToIstorijaPregledaStudenta()" >Uvid u istoriju pregleda studenta</a></li>
+                <li *ngIf="isRole() == 'doktor'" class="list-group-item"><a  aria-current="page"  class="list-group-item" (click)="goToKreiranjeIzvestaja()">Kreiranje lekarskih izvestaja</a></li>
+                <li *ngIf="isRole() == 'doktor'" class="list-group-item"><a  aria-current="page"  class="list-group-item" (click)="goToIstorijaIzvestaja()">Pregled istorije izdatih lekarskih izvestaja</a></li>        
+            </ul> 
+            <button class="btn btn-sm btn-go" *ngIf="isRole() == 'doktor'">
+                <a  (click)="goToDoktorHome()">pokreni servis</a>
+            </button>  
+            <button class="btn btn-sm btn-go" *ngIf="isRole() == 'student'">
+                <a  (click)="goToStudentHome()">pokreni servis</a>
+            </button>         
+        </div>
+        <div class="col-4" *ngIf="isRole() != 'gradjanin'">   
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a  aria-current="page" class="list-group-item" >Usluga</a></li>
+                <li class="list-group-item"><a  aria-current="page" class="list-group-item">Usluga</a></li>
+                <li class="list-group-item"><a  aria-current="page" class="list-group-item">Usluga</a></li>
+                <li class="list-group-item"><a  aria-current="page" class="list-group-item">Usluga</a></li>
+            </ul>         
+        </div>
+        <div class="col-4" *ngIf="isRole() != 'gradjanin'">   
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a  aria-current="page"class="list-group-item" >Usluga</a></li>
+                <li class="list-group-item"><a  aria-current="page"class="list-group-item" >Usluga</a></li>
+                <li class="list-group-item" ><a  aria-current="page"class="list-group-item" >Usluga</a></li>
+                <li class="list-group-item"><a  aria-current="page"class="list-group-item" >Usluga</a></li>
+            </ul>         
+        </div>
+    </div>
+</div>
