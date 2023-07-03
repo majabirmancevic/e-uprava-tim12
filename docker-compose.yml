@@ -1,0 +1,109 @@
+version: '3.8'
+
+services:
+  student-service:
+    image: student-image
+    container_name: student-service
+    build:
+      context: ./studentskiServis/
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "9090:9090"
+    environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/servis
+        SPRING_DATASOURCE_USERNAME: root
+        SPRING_DATASOURCE_PASSWORD: admin
+    depends_on:
+      - mysql-db
+    networks:
+      - network
+
+  mysql-db:
+    image: mysql
+    container_name: mysql-db
+    restart: always
+    ports:
+      - "3307:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: servis
+    volumes:
+      - ./mysql-db/:/var/lib/mysql
+    networks:
+      - network
+
+  ambulanta-service:
+    image: ambulanta-image
+    container_name: ambulanta-service
+    build:
+      context: ./studentska-ambulanta/ambulanta-backend/
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "9000:9000"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://ambulanta-db:3306/euprava
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: admin
+    depends_on:
+      - ambulanta-db
+    networks:
+      - network
+
+  ambulanta-db:
+    image: mysql
+    container_name: ambulanta-db
+    restart: always
+    ports:
+      - "3308:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: euprava
+    volumes:
+      - ./mysql-db/:/var/lib/ambulanta
+    networks:
+      - network
+
+  maticar-service:
+    image: maticar-image
+    container_name: maticar-service
+    build:
+      context: ./auth-service/
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://maticar-db:3306/maticar
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: admin
+    depends_on:
+      - maticar-db
+    networks:
+      - network
+
+  maticar-db:
+    image: mysql
+    container_name: maticar-db
+    restart: always
+    ports:
+      - "3309:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: maticar
+    volumes:
+      - ./mysql-db/:/var/lib/maticar
+    networks:
+      - network
+
+
+volumes:
+  db_data:
+
+networks:
+  network:
+    driver: bridge

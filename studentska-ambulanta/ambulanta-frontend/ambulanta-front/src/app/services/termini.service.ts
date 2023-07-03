@@ -51,11 +51,8 @@ import { TerminDoktorResponse } from "../model/dto/TerminiDoktorResponse";
     }
 
     zakaziTermin(terminId:number){
-  //    const token = localStorage.getItem('JWT-TOKEN');
-  //    const bearerToken = `Bearer ${token}`;
       const options = {
       headers: new HttpHeaders({ 
-  //      'Authorization': bearerToken,
         'Accept': 'application/json',
         'Content-Type': 'application/json' 
       })

@@ -41,9 +41,7 @@ public class LekarskiIzvestajService {
             izvestaj.setTermin(termin);
             izvestaj.setOpis(request.getOpis());
 
-
             LekarskiIzvestaj savedReport = lekarskiIzvestajRepository.save(izvestaj);
-
             return true;
         }
         return false;

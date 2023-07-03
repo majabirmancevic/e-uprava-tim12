@@ -1,10 +1,12 @@
 <div class="container">
-  <h3 class="h3">Pregled usluga</h3>
+  <!-- <h3 class="h3">Pregled usluga</h3> -->
   <div class="row">
     <div class="col-sm-4">
       <p>
         <a
           class="btn btn-light"
+          style="background-color:rgba(254,240,231,255);"
+
           data-bs-toggle="collapse"
           href="#zakazivanje"
           role="button"
@@ -17,8 +19,8 @@
       <div class="collapse" id="zakazivanje">
         <div class="card card-body" style="margin-bottom: 20px">
           <p>
-            Izborom zakazanog termina, doktori imaju mogucnost da izdaju lekarski
-            izvestaj pregleda .
+            Izborom zakazanog termina, doktori imaju mogucnost da izdaju
+            lekarski izvestaj pregleda .
           </p>
           <button
             class="btn btn-light"
@@ -31,11 +33,12 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col-sm-4">
       <button
         class="btn btn-dugme"
-        style="background-color: rgba(0, 157, 255, 0.555)"
+        style="background-color: rgba(219, 244, 255, 255) ; "
+
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#istorijaPregleda"
@@ -65,7 +68,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4" *ngIf="doktorOpstePrakse">
       <button
         class="btn btn-dugme"
         style="
@@ -84,9 +87,9 @@
       <div class="collapse" id="izdavanje">
         <div class="card card-body">
           <p>
-            Doktori opste prakse imaju mogucnost uvida u listu studenata koji
-            su obavili potrebne preglede, kao i izdavanja lekarskih uverenja
-            tim studentima.
+            Doktori opste prakse imaju mogucnost uvida u listu studenata koji su
+            obavili potrebne preglede, kao i izdavanja lekarskih uverenja tim
+            studentima.
           </p>
           <button
             class="btn btn-light"

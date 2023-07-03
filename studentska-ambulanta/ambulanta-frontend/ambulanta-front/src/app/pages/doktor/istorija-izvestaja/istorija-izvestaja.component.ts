@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IzvestajResponse } from 'src/app/model/dto/IzvestajResponse';
 import { IzvestajiService } from 'src/app/services/izvestaji.service';
 
@@ -10,7 +10,7 @@ import { IzvestajiService } from 'src/app/services/izvestaji.service';
 })
 export class IstorijaIzvestajaComponent implements OnInit {
 
-  constructor(private izvestajService: IzvestajiService,private activateRouter:ActivatedRoute) { }
+  constructor(private izvestajService: IzvestajiService,private activateRouter:ActivatedRoute,private router:Router) { }
   searchText: any;
   izvestaji! : IzvestajResponse[];
 
@@ -25,5 +25,9 @@ export class IstorijaIzvestajaComponent implements OnInit {
     this.izvestajService.getIzvestajiByDoktor().subscribe((data) => {
       this.izvestaji = data;
     })
+  }
+
+  goBack(){
+    this.router.navigate(['doktor',localStorage.getItem('jwt')]);
   }
 }

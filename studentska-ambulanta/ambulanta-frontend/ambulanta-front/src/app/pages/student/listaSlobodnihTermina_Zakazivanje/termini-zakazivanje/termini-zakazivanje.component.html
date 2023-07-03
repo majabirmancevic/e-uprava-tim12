@@ -37,7 +37,7 @@
         #specijalnost
         (change)="selectOption(specijalnost.value)"
       >
-        <option [value]="o.value" *ngFor="let o of options">
+        <option  [value]="o.value" *ngFor="let o of options">
           {{ o.name }}
         </option>
       </select>
@@ -53,8 +53,8 @@
       </button>
     </div>
   </form>
-  <div class="row">
-    <table class="table table-hover">
+  <div class="row" *ngIf="pretraga">
+    <table class="table table-hover" style="margin-top: 30px;" >
       <thead class="thead-light">
         <tr>
           <th scope="col">Pocetak termina</th>
@@ -73,8 +73,10 @@
       </tbody>
     </table>
   </div>
-  <button
+  <button 
+    *ngIf="pretraga"
     type="button"
+    style=" margin-top: 20px;"
     class="btn btn-success"
     (click)="zakazi()"
     [disabled]="!selektovan"
@@ -88,6 +90,7 @@
       color: white;
       background-color: rgba(38, 67, 80, 0.555);
       margin-left: 5px;
+      margin-top: 20px;
     "
     (click)="goBack()"
   >

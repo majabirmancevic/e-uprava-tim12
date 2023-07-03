@@ -79,34 +79,34 @@ public class DataService {
         studentService.save(student);
         studentService.save(student1);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
-        Termin termin = new Termin();
-        termin.setStudent(null);
-        termin.setDoktor(doktor);
-        termin.setPocetakTermina(LocalDateTime.parse("2023-06-16 16:30",formatter));
-        termin.setKrajTermina(LocalDateTime.parse("2023-06-16 16:45",formatter));
-        termin.setStatusTermina(StatusTermina.SLOBODAN);
-
-
-        Termin termin1 = new Termin();
-
-        termin1.setStudent(null);
-        termin1.setDoktor(doktor1);
-
-        //LocalDateTime dt1 = LocalDateTime.of(2023, Month.JUNE,17,10,0);
-        String newDate = "2023-06-16 17:10";
-        //String newDate = dt1.format(formatter);
-        termin1.setPocetakTermina(LocalDateTime.parse(newDate,formatter));
-
-        //LocalDateTime dt2 =LocalDateTime.of(2023, Month.JUNE,17,10,15);
-        String newDate2 = "2023-06-16 16:15";
-        termin1.setKrajTermina(LocalDateTime.parse(newDate2,formatter));
-
-        termin1.setStatusTermina(StatusTermina.SLOBODAN);
-
-        terminService.save(termin);
-        terminService.save(termin1);
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//
+//        Termin termin = new Termin();
+//        termin.setStudent(null);
+//        termin.setDoktor(doktor);
+//        termin.setPocetakTermina(LocalDateTime.parse("2023-06-19 16:30",formatter));
+//        termin.setKrajTermina(LocalDateTime.parse("2023-06-19 16:45",formatter));
+//        termin.setStatusTermina(StatusTermina.SLOBODAN);
+//
+//
+//        Termin termin1 = new Termin();
+//
+//        termin1.setStudent(null);
+//        termin1.setDoktor(doktor1);
+//
+//        //LocalDateTime dt1 = LocalDateTime.of(2023, Month.JUNE,17,10,0);
+//        String newDate = "2023-06-18 17:10";
+//        //String newDate = dt1.format(formatter);
+//        termin1.setPocetakTermina(LocalDateTime.parse(newDate,formatter));
+//
+//        //LocalDateTime dt2 =LocalDateTime.of(2023, Month.JUNE,17,10,15);
+//        String newDate2 = "2023-06-18 16:15";
+//        termin1.setKrajTermina(LocalDateTime.parse(newDate2,formatter));
+//
+//        termin1.setStatusTermina(StatusTermina.SLOBODAN);
+//
+//        terminService.save(termin);
+//        terminService.save(termin1);
     }
 
 

@@ -36,6 +36,6 @@ export class ObavljeniPreglediComponent implements OnInit {
   }
 
   goBack(){
-    this.router.navigate(['']);
+    this.router.navigate(['student',localStorage.getItem('jwt')]);
   }
 }

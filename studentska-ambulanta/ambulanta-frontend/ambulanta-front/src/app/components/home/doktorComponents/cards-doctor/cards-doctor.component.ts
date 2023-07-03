@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SecurityService } from 'src/app/services/security.service';
 
 @Component({
   selector: 'app-cards-doctor',
@@ -8,9 +9,27 @@ import { Router } from '@angular/router';
 })
 export class CardsDoctorComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  doktorOpstePrakse : boolean  ;
+
+
+  constructor(private router:Router,private servis:SecurityService) {
+    this.servis.checkDoktor(localStorage.getItem('username') as string).subscribe((data)=>{
+      this.doktorOpstePrakse = eval(data);
+      console.log("OPSTA PRAKSA 1 "+ data)
+      console.log("OPSTA PRAKSA 2 "+ this.doktorOpstePrakse)
+    });
+   }
 
   ngOnInit(): void {
+    
+  }
+
+  checkDoktor(){
+    this.servis.checkDoktor(localStorage.getItem('username') as string).subscribe((data)=>{
+      this.doktorOpstePrakse = eval(data);
+      console.log("OPSTA PRAKSA 1 "+ data)
+
+    });
   }
 
   gotoTermini(){
