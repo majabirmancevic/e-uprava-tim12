@@ -30,4 +30,8 @@ export class PregledSvihTerminaComponent implements OnInit {
   goToDodavanjeIzvestaja(id:number) {
     this.router.navigate(['kreiranje-izvestaja',id]);
   }
+
+  goBack(){
+    this.router.navigate(['doktor',localStorage.getItem('jwt')]);
+  }
 }

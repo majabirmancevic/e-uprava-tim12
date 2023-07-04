@@ -100,6 +100,9 @@ public class TerminService {
                 if(t.getStudent().getJmbg().equals(student.getJmbg()) && t.getPocetakTermina().equals(termin.getPocetakTermina()) && t.getKrajTermina().equals(termin.getKrajTermina())){
                     throw new BadRequestException("U ovom terminu vec imate zakazan pregled! Izaberite drugi termin.");
                 }
+                if(t.getStudent().getPol().equals(Pol.MUSKI) && t.getDoktor().getSpecijalnost().equals(SpecijalnostDoktora.GINEKOLOG)){
+                    throw new BadRequestException("Nije moguce zakazati termin kod ginekologa.");
+                }
             }
         }
 

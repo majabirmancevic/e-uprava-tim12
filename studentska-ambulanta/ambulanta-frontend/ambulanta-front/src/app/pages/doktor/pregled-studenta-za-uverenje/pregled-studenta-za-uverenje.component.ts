@@ -4,6 +4,7 @@ import { IzvestajRequest } from 'src/app/model/dto/IzvestajRequest';
 import { LekarskoUverenjeRequest } from 'src/app/model/dto/LekarskoUverenjeRequest';
 import { StudentResponse } from 'src/app/model/dto/StudentResponse';
 import { IzvestajiService } from 'src/app/services/izvestaji.service';
+import { SecurityService } from 'src/app/services/security.service';
 
 @Component({
   selector: 'app-pregled-studenta-za-uverenje',

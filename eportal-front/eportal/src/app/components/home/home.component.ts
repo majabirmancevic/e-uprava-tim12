@@ -16,6 +16,7 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.role = this.authService.getRole()
+    
     console.log("ROLE : " + this.role);
   }
 

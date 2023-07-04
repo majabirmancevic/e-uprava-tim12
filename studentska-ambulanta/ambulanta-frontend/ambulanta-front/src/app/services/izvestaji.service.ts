@@ -17,11 +17,8 @@ export class IzvestajiService{
 constructor(private http: HttpClient){}
 
 getIzvestajPregleda(terminId:number):Observable<any>{
-//  const token = localStorage.getItem('JWT-TOKEN');
-//      const bearerToken = `Bearer ${token}`;
       const options = {
       headers: new HttpHeaders({ 
-//       'Authorization': bearerToken,
         'Accept': 'application/json',
         'Content-Type': 'application/json' 
       })
@@ -30,11 +27,9 @@ getIzvestajPregleda(terminId:number):Observable<any>{
 }
 
 postIzvestaj(izvestaRequest:IzvestajRequest){
-  //  const token = localStorage.getItem('JWT-TOKEN');
-  //    const bearerToken = `Bearer ${token}`;
+
       const options = {
       headers: new HttpHeaders({ 
-    //    'Authorization': bearerToken,
         'Accept': 'application/json',
         'Content-Type': 'application/json' 
       })
@@ -45,11 +40,8 @@ postIzvestaj(izvestaRequest:IzvestajRequest){
 
 
 getIzvestajiByDoktor(): Observable<any[]>{
-    //const token = localStorage.getItem('JWT-TOKEN');
-    //  const bearerToken = `Bearer ${token}`;
       const options = {
       headers: new HttpHeaders({ 
-      //  'Authorization': bearerToken,
         'Accept': 'application/json',
         'Content-Type': 'application/json' 
       })};

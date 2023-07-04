@@ -59,9 +59,11 @@ export class LoginComponent {
 
         localStorage.setItem("jwt", data) 
         localStorage.setItem("username",decodedJwtData.username)  
-        localStorage.setItem("role",decodedJwtData.role['authority'])        
-      
-      this.router.navigate([''])
+        localStorage.setItem("role",decodedJwtData.role['authority'])
+
+        
+        window.location.href = `http://localhost:4200/`;  
+
     })
   }
 }

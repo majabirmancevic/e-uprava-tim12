@@ -12,7 +12,7 @@ import { TerminiService } from 'src/app/services/termini.service';
 })
 export class TerminiZakazivanjeComponent implements OnInit {
 
-  
+  pretraga : boolean = false;
   minDate ;
   termini! : TerminResponse[] ;
   selectedItem :string;
@@ -37,6 +37,7 @@ export class TerminiZakazivanjeComponent implements OnInit {
 
 
   constructor(private config: NgbDatepickerConfig, private terminiService:TerminiService,private router: Router,private activatedRouter:ActivatedRoute) { 
+    this.specijalnost = 'stomatolog'
     const current = new Date();
     this.minDate = {
       year: current.getFullYear(),
@@ -56,7 +57,23 @@ export class TerminiZakazivanjeComponent implements OnInit {
     this.selectedDate = new Date(evt.year,evt.month-1,evt.day);
     console.log(this.selectedDate.getFullYear());
     const month :number = this.selectedDate.getMonth() + 1
-    const dateString = this.selectedDate.getFullYear() + "-" + 0 +month + "-" + this.selectedDate.getDate()
+    //day
+    let day : number = this.selectedDate.getDate();
+    let dayString ;
+    if (day < 10){
+      dayString = 0 + String(day)
+    } else {
+      dayString = String(day)
+    }
+
+    let monthString ;
+    if (month < 10){
+      monthString = 0 + String(month)
+    } else {
+      monthString = String(month)
+    }
+
+    const dateString = this.selectedDate.getFullYear() + "-" + monthString + "-" + dayString
     console.log(dateString);
     this.selectedItem = dateString;
   }
@@ -75,6 +92,7 @@ export class TerminiZakazivanjeComponent implements OnInit {
     
     this.terminiService.getSlobodniTerminiBySpecijalista(this.specijalnost as any,this.selectedItem).subscribe((data) => {
       this.termini = data;
+      this.pretraga = true;
     })
   }
 
@@ -88,11 +106,11 @@ export class TerminiZakazivanjeComponent implements OnInit {
   zakazi(){
     this.terminiService.zakaziTermin(this.terminId).subscribe((data) => {
       console.log("ZAKAZAN JE TERMIN SA ID-JEM : "+ this.terminId)
-      this.router.navigate(['/termini']);
+      window.location.reload()
     })
   }
 
   goBack(){
-    this.router.navigate(['']);
+    this.router.navigate(['student',localStorage.getItem('jwt')]);
   }
 }

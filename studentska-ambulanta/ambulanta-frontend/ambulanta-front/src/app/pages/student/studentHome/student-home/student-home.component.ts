@@ -15,6 +15,7 @@ export class StudentHomeComponent implements OnInit {
     if(this.activateRoute.snapshot.params['token'] != null && this.activateRoute.snapshot.params['token'] != undefined){
       localStorage.setItem('jwt',this.activateRoute.snapshot.params['token'])
       localStorage.setItem('role',this.authService.getRole(this.activateRoute.snapshot.params['token']));
+      localStorage.setItem('username', this.authService.getUsername(this.activateRoute.snapshot.params['token']));
     }
     this.role = this.authService.getRole(this.authService.getJwtToken()!)
     console.log("ROLE : " + this.role);

@@ -1,0 +1,21 @@
+div {
+    text-align: center;
+    margin-top: 20px;
+    }
+    
+    a,.btn-dugme {
+        padding: 30px;
+    }
+    
+   
+    
+    .collapse{
+        margin-left: 50px;
+    }
+    
+    h3{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: rgb(17, 26, 58);
+    }
