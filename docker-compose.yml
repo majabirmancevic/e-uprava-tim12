@@ -1,38 +1,38 @@
 version: '3.8'
 
 services:
-  student-service:
-    image: student-image
-    container_name: student-service
-    build:
-      context: ./studentskiServis/
-      dockerfile: Dockerfile
-    restart: on-failure
-    ports:
-      - "9090:9090"
-    environment:
-        SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/servis
-        SPRING_DATASOURCE_USERNAME: root
-        SPRING_DATASOURCE_PASSWORD: admin
-    depends_on:
-      - mysql-db
-    networks:
-      - network
+  # student-service:
+  #   image: student-image
+  #   container_name: student-service
+  #   build:
+  #     context: ./studentskiServis/
+  #     dockerfile: Dockerfile
+  #   restart: on-failure
+  #   ports:
+  #     - "9090:9090"
+  #   environment:
+  #       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/servis
+  #       SPRING_DATASOURCE_USERNAME: root
+  #       SPRING_DATASOURCE_PASSWORD: admin
+  #   depends_on:
+  #     - mysql-db
+  #   networks:
+  #     - network
 
-  mysql-db:
-    image: mysql
-    container_name: mysql-db
-    restart: always
-    ports:
-      - "3307:3306"
-    command: --default-authentication-plugin=mysql_native_password
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: servis
-    volumes:
-      - ./mysql-db/:/var/lib/mysql
-    networks:
-      - network
+  # mysql-db:
+  #   image: mysql
+  #   container_name: mysql-db
+  #   restart: always
+  #   ports:
+  #     - "3307:3306"
+  #   command: --default-authentication-plugin=mysql_native_password
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: admin
+  #     MYSQL_DATABASE: servis
+  #   volumes:
+  #     - ./mysql-db/:/var/lib/mysql
+  #   networks:
+  #     - network
 
   ambulanta-service:
     image: ambulanta-image
@@ -100,9 +100,9 @@ services:
     networks:
       - network
 
-
 volumes:
   db_data:
+
 
 networks:
   network:
