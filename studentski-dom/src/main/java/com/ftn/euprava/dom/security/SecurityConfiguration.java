@@ -56,10 +56,9 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
     }
 
 
-//    @Override
-//    protected void configure(HttpSecurity httpSecurity) throws Exception{
-//        httpSecurity.headers().cacheControl().disable();
-//        httpSecurity.cors();
+//   @Override
+//   protected void configure(HttpSecurity httpSecurity) throws Exception{
+//        httpSecurity.headers().cacheControl().disable();httpSecurity.cors();
 //        httpSecurity.headers().frameOptions().disable();
 //        httpSecurity.csrf().disable()
 //                .sessionManagement()
@@ -68,11 +67,27 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
 //                .authorizeRequests()
 //                .antMatchers( "*").permitAll()
 //                .antMatchers( "*").permitAll()
-//                .antMatchers(HttpMethod.POST, "/api/lekarsko-uverenje").permitAll()
-//                .antMatchers(HttpMethod.GET, "/api/lekarsko-uverenje/*").permitAll()
-//                .anyRequest().authenticated();
+////                .antMatchers(HttpMethod.POST, "/api/lekarsko-uverenje").permitAll()
+//                .antMatchers(HttpMethod.GET, "/api/konkursi").permitAll()
+//               .anyRequest().authenticated();
 //
-//        httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
-//    }
+//       httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+//   }
+
+    @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
+                .headers().cacheControl().disable()
+                .and().cors()
+                .and().headers().frameOptions().disable()
+                .and().csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().authorizeRequests()
+                .antMatchers("/api/konkursi").permitAll()
+                .anyRequest().authenticated();
+
+        httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+    }
+
 
 }
