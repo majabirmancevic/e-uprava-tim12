@@ -1,5 +1,6 @@
 package com.ftn.euprava.dom.service;
 
+import com.ftn.euprava.dom.dto.KonkursDTO;
 import com.ftn.euprava.dom.dto.StudentDTO;
 import com.ftn.euprava.dom.model.Konkurs;
 import com.ftn.euprava.dom.model.Soba;
@@ -29,10 +30,23 @@ public class KonkursService {
     private SobaRepository sobaRepository;
 
 
-    public List<Konkurs> getAllKonkursi() {
-        return konkursRepository.findAll();
+    public List<KonkursDTO> getAllKonkursi() {
+        List<Konkurs> konkursi = konkursRepository.findAll();
+        return konkursi.stream()
+                .map(this::mapToDTO)
+                .collect(Collectors.toList());
     }
 
+    // ...
+
+    private KonkursDTO mapToDTO(Konkurs konkurs) {
+        KonkursDTO konkursDTO = new KonkursDTO();
+        konkursDTO.setId(konkurs.getId());
+        konkursDTO.setGrad(konkurs.getGrad());
+        konkursDTO.setSkolskaGodina(konkurs.getSkolskaGodina());
+        // Dodajte ostale informacije prema potrebi
+        return konkursDTO;
+    }
     public Optional<Konkurs> getKonkursById(Long id) {
         return konkursRepository.findById(id);
     }

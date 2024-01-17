@@ -31,7 +31,18 @@ public class KonkursController {
     @Autowired
     private SobeService sobeService;
 
-    // ...
+    @GetMapping
+    @PreAuthorize("hasRole('STUDENT')")
+
+    public ResponseEntity<List<KonkursDTO>> getAllKonkursi() {
+        List<KonkursDTO> konkursi = konkursService.getAllKonkursi();
+
+        if (konkursi != null && !konkursi.isEmpty()) {
+            return ResponseEntity.ok(konkursi);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
 
     @PostMapping("/{konkursId}/prijavi-se")
     @PreAuthorize("hasRole('STUDENT')")
