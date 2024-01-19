@@ -1,0 +1,8 @@
+<div *ngFor="let konkurs of konkursi">
+  <h3>{{ konkurs.grad }}</h3>
+  <p>{{ konkurs.skolskaGodina }}</p>
+  <button (click)="prijaviSeNaKonkurs(konkurs.id)">Prijavi se</button>
+  <button (click)="prikaziRangListu(konkurs.id)">Rang lista</button>
+  <a *ngIf="isStudent()" routerLink="/soba">Soba</a>
+
+</div>

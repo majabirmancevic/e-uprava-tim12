@@ -1,0 +1,6 @@
+<div *ngFor="let student of prijavljeniStudenti">
+  <p>{{ student.ime }} {{ student.prezime }} - {{ student.bodovi }}</p>
+  <button *ngIf="isUpravnik()" (click)="dodeliSobu(student.id)">Dodeli sobu</button>
+</div>
+
+<button (click)="vratiNaPocetnu()">Vrati se na početnu</button>
