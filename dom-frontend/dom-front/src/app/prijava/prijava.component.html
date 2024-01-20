@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>Prijava na konkurs</h2>
+  <form (ngSubmit)="onSubmit()" #prijavaForm="ngForm">
+    <div>
+      <label for="username">Korisničko ime:</label>
+      <input type="text" id="username" [(ngModel)]="studentDTO.username" name="username" required>
+    </div>
+
+    <div>
+      <label for="godinaStudiranja">Godina studiranja:</label>
+      <input type="number" id="godinaStudiranja" [(ngModel)]="studentDTO.godinaStudiranja" name="godinaStudiranja" required>
+    </div>
+    <div>
+      <label for="osvojeniBodovi">Osvojeni bodovi:</label>
+      <input type="number" id="osvojeniBodovi" [(ngModel)]="studentDTO.osvojeniBodovi" name="osvojeniBodovi" required>
+    </div>
+    <div>
+      <label for="prosek">Prosek:</label>
+      <input type="number" step="0.01" id="prosek" [(ngModel)]="studentDTO.prosek" name="prosek" required>
+    </div>
+    <div>
+      <label for="konkursId">ID konkursa:</label>
+      <input type="number" id="konkursId" [(ngModel)]="studentDTO.konkursId" name="konkursId" required>
+    </div>
+    <!-- Dodajte ostala polja koja su vam potrebna -->
+    <button type="submit">Prijavi se na konkurs</button>
+  </form>
+</div>

@@ -84,6 +84,8 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeRequests()
                 .antMatchers("/api/konkursi").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/konkursi/prijavi-se-na-konkurs").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/konkursi/rang-lista").permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

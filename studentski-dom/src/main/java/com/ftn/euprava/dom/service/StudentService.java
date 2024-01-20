@@ -1,5 +1,6 @@
 package com.ftn.euprava.dom.service;
 
+import com.ftn.euprava.dom.dto.StudentDTO;
 import com.ftn.euprava.dom.model.Konkurs;
 import com.ftn.euprava.dom.model.Student;
 import com.ftn.euprava.dom.repository.StudentRepository;
@@ -20,31 +21,36 @@ public class StudentService {
     @Autowired
     private KonkursService konkursService;
 
-    public void prijaviStudentaNaKonkurs(String username, Long konkursId) {
-        Optional<Student> studentOptional = studentRepository.findByUsername(username);
-        Optional<Konkurs> konkursOptional = konkursService.getKonkursById(konkursId);
+    public void prijaviStudentaNaKonkurs(StudentDTO studentDTO) {
+        String username = studentDTO.getUsername();
 
-        if (studentOptional.isPresent() && konkursOptional.isPresent()) {
-            Student student = studentOptional.get();
-            Konkurs konkurs = konkursOptional.get();
+        Student student = studentRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("Student sa datim korisničkim imenom ne postoji"));
 
-            // Proveri da li je student već prijavljen na konkurs
-            if (!konkurs.getPrijavljeniStudenti().contains(student)) {
-                // Ako nije, izračunaj bodove i dodaj studenta na listu prijavljenih
-                izracunajBodove(student);
-                konkurs.getPrijavljeniStudenti().add(student);
-                // Ažuriraj konkurs
-                konkursService.updateKonkurs(konkursId, konkurs);
-            }
-        }
-    }
+        // Setovanje vrednosti na osnovu konkursa
+        student.setGodinaStudiranja(studentDTO.getGodinaStudiranja());
+        student.setOsvojeniBodovi(studentDTO.getOsvojeniBodovi());
+        student.setProsek(studentDTO.getProsek());
 
-    private void izracunajBodove(Student student) {
-        // Implementirajte logiku za izračunavanje bodova
-        // Na primer, možete koristiti formulu koju ste naveli (broj bodova + prosjek) / broj godina studiranja
-        double bodovi = (student.getOsvojeniBodovi() + student.getProsek()) / student.getGodinaStudiranja();
+        // Računanje bodova po formuli
+        double bodovi = studentDTO.getGodinaStudiranja() + (double) studentDTO.getOsvojeniBodovi() / studentDTO.getProsek();
         student.setBodovi(bodovi);
+
+        // Setovanje konkursa
+        Konkurs konkurs = konkursService.findKonkursById(studentDTO.getKonkursId())
+                .orElseThrow(() -> new IllegalArgumentException("Konkurs sa datim ID-om ne postoji"));
+        student.setKonkurs(konkurs);
+
+        // Čuvanje ažuriranog studenta
+        studentRepository.save(student);
     }
+
+//    private void izracunajBodove(Student student) {
+//        // Implementirajte logiku za izračunavanje bodova
+//        // Na primer, možete koristiti formulu koju ste naveli (broj bodova + prosjek) / broj godina studiranja
+//        double bodovi = (student.getOsvojeniBodovi() + student.getProsek()) / student.getGodinaStudiranja();
+//        student.setBodovi(bodovi);
+//    }
 
 
     public List<Student> getAllStudents() {
