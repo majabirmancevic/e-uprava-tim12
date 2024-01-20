@@ -31,8 +31,10 @@ import {CommonModule} from "@angular/common"; // Prilagodite putanju ako je potr
       multi: true
     },
     JwtHelperService,
-    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }
+    {  useValue: JWT_OPTIONS, provide: JWT_OPTIONS }
   ],
+  bootstrap: [AppComponent]
+
 })
 export class AppModule { }
 
