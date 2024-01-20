@@ -9,20 +9,20 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  
+
   role : string;
   constructor(private authService: AuthService, private activateRoute: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
     this.role = this.authService.getRole()
-    
+
     console.log("ROLE : " + this.role);
   }
 
   isRole() : any{
-    if(this.authService.getRole() == 'ROLE_DOKTOR'){
-      return 'doktor'
+    if(this.authService.getRole() == 'ROLE_UPRAVNIK'){
+      return 'upravnik'
     } else if(this.authService.getRole() == 'ROLE_STUDENT'){
       return 'student'
     } else {
@@ -32,11 +32,11 @@ export class HomeComponent {
 
 
   goToStudentHome(){
-    window.location.href = `http://localhost:4201/student/${localStorage.getItem('jwt')}`;  
+    window.location.href = `http://localhost:4202/student/${localStorage.getItem('jwt')}`;
   }
 
-  goToDoktorHome(){
-    window.location.href = `http://localhost:4201/doktor/${localStorage.getItem('jwt')}`;  
+  goToUpravnikHome(){
+    window.location.href = `http://localhost:4202/upravnik/${localStorage.getItem('jwt')}`;
   }
 
   goToZakazivanje(){
@@ -52,7 +52,7 @@ export class HomeComponent {
     //   window.location.href = `http://localhost:4201/obavljeni-pregledi/${localStorage.getItem('jwt')}`;
     // }
      // window.location.href = `http://localhost:4201/obavljeni-pregledi`;
-    
+
   }
 
   goToKreiranjeIzvestaja(){
@@ -71,5 +71,5 @@ export class HomeComponent {
 
   }
 
-  
+
 }

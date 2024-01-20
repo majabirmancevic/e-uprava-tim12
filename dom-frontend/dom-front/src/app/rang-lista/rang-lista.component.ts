@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { KonkursService } from '../service/konkurs.service';
 import { SecurityService } from '../service/security.service';
-import { StudentDTO } from '../model';
+import { StudentDTO } from '../model/StudentDTO';
 
 @Component({
   selector: 'app-rang-lista',
@@ -10,7 +10,7 @@ import { StudentDTO } from '../model';
   styleUrls: ['./rang-lista.component.css']
 })
 export class RangListaComponent implements OnInit {
-  konkursId: number;
+  konkursId!: number;
   prijavljeniStudenti: StudentDTO[] = [];
 
   constructor(
@@ -18,7 +18,8 @@ export class RangListaComponent implements OnInit {
     private router: Router,
     private konkursService: KonkursService,
     private securityService: SecurityService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -46,19 +47,21 @@ export class RangListaComponent implements OnInit {
     return this.securityService.getRoleFromLS() === 'UPRAVNIK';
   }
 
-  dodeliSobu(studentId: number): void {
-    const sobaId = prompt('Unesite ID sobe:');
-    if (sobaId) {
-      this.konkursService.dodeliSobu(this.konkursId, studentId, +sobaId)
-        .subscribe(
-          () => {
-            alert('Soba uspešno dodeljena!');
-          },
-          (error) => {
-            console.error('Greška prilikom dodele sobe:', error);
-            alert('Došlo je do greške prilikom dodele sobe.');
-          }
-        );
+  dodeliSobu(studentId: number | undefined): void {
+    if (studentId !== undefined) {
+      const sobaId = prompt('Unesite ID sobe:');
+      if (sobaId !== null && sobaId !== '') {
+        this.konkursService.dodeliSobu(this.konkursId, studentId, +sobaId)
+          .subscribe(
+            () => {
+              alert('Soba uspešno dodeljena!');
+            },
+            (error) => {
+              console.error('Greška prilikom dodele sobe:', error);
+              alert('Došlo je do greške prilikom dodele sobe.');
+            }
+          );
+      }
     }
-  }
+}
 }

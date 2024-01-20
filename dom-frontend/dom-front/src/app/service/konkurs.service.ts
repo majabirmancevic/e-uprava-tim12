@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { KonkursDTO, StudentDTO } from '../model'; // Importujte vaše DTO modele
+import {  StudentDTO } from '../model/StudentDTO'; // Importujte vaše DTO modele
+import {  KonkursDTO } from '../model/KonkursDTO'; // Importujte vaše DTO modele
 
 @Injectable({
   providedIn: 'root',

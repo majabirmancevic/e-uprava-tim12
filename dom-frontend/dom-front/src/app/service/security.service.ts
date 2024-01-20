@@ -28,7 +28,7 @@ export class SecurityService {
     }
   }
 
-  getRole(token: string): string {
+  getRole(token: string): string | null {
     let jwtData = token.split('.')[1];
     let decodedJwtJsonData = atob(jwtData);
     let decodedJwtData = JSON.parse(decodedJwtJsonData);
@@ -45,12 +45,10 @@ export class SecurityService {
     const username = decodedJwtData?.username || null;
     return username;
   }
-
-  getRoleFromLS(): string {
-    const role = localStorage.getItem('ROLE') || null;
-    return role;
+  getRoleFromLS(): string | null {
+    const role = localStorage.getItem('ROLE');
+    return role !== null ? role : null;
   }
-
 
 
 
