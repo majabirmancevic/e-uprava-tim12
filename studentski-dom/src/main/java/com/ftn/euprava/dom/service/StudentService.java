@@ -27,21 +27,17 @@ public class StudentService {
         Student student = studentRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalArgumentException("Student sa datim korisničkim imenom ne postoji"));
 
-        // Setovanje vrednosti na osnovu konkursa
         student.setGodinaStudiranja(studentDTO.getGodinaStudiranja());
         student.setOsvojeniBodovi(studentDTO.getOsvojeniBodovi());
         student.setProsek(studentDTO.getProsek());
 
-        // Računanje bodova po formuli
         double bodovi = studentDTO.getGodinaStudiranja() + (double) studentDTO.getOsvojeniBodovi() / studentDTO.getProsek();
         student.setBodovi(bodovi);
 
-        // Setovanje konkursa
         Konkurs konkurs = konkursService.findKonkursById(studentDTO.getKonkursId())
                 .orElseThrow(() -> new IllegalArgumentException("Konkurs sa datim ID-om ne postoji"));
         student.setKonkurs(konkurs);
 
-        // Čuvanje ažuriranog studenta
         studentRepository.save(student);
     }
 

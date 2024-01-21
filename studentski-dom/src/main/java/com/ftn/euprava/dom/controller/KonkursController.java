@@ -100,7 +100,6 @@ public class KonkursController {
     @PostMapping("/dodeli-sobu")
     public ResponseEntity<Void> dodeliSobu(@RequestParam String username, @RequestParam Long sobaId) {
         try {
-            // Dodajte proveru prava upravljanja studentima i sobama
 
             Optional<Student> studentOptional = studentRepository.findByUsername(username);
             Optional<Soba> sobaOptional = sobaRepository.findById(sobaId);
@@ -109,10 +108,8 @@ public class KonkursController {
                 Student student = studentOptional.get();
                 Soba soba = sobaOptional.get();
 
-                // Postavljanje sobe studentu
                 student.setSoba(soba);
 
-                // Ažuriranje studenta
                 studentRepository.save(student);
 
                 return ResponseEntity.ok().build();
