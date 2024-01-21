@@ -11,7 +11,7 @@ export class AuthService {
 
   @Output() loggedIn: EventEmitter<boolean> = new EventEmitter();
   @Output() username: EventEmitter<string> = new EventEmitter();
-  
+
   private access_token = '';
 
   headers = new HttpHeaders({
@@ -20,7 +20,7 @@ export class AuthService {
   });
 
   constructor(private http: HttpClient,private router: Router){}
-    
+
   getDecodedAccessToken(token: string): any {
     try {
       return jwt_decode(token);
@@ -28,10 +28,10 @@ export class AuthService {
       return null;
     }
   }
-   
-  
+
+
   login(user : LoginRequestPayload) : Observable<any>{
-    return this.http.post('http://localhost:8080/api/auth/login', JSON.stringify(user), {headers:this.headers,responseType: 'text'});
+    return this.http.post('http://localhost:8086/api/auth/login', JSON.stringify(user), {headers:this.headers,responseType: 'text'});
   }
 
   getJwtToken() {

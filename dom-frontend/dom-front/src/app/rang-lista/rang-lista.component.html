@@ -1,0 +1,8 @@
+<div *ngIf="rangLista">
+  <h2>Rang Lista</h2>
+  <ul>
+    <li *ngFor="let student of rangLista">
+      {{ student.ime }} {{ student.prezime }} - Bodovi: {{ student.bodovi }}
+    </li>
+  </ul>
+</div>

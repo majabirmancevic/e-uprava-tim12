@@ -1,0 +1,14 @@
+<div>
+  <h2>Prikaz informacija o sobi</h2>
+  <label for="username">Korisničko ime:</label>
+  <input type="text" id="username" [(ngModel)]="username" name="username" required>
+
+  <button (click)="prikaziSobaInfo()">Prikazi informacije o sobi</button>
+
+  <div *ngIf="student && student.soba">
+    <h3>Soba ID: {{ student.soba.id }}</h3>
+    <p>Ime: {{ student.ime }}</p>
+    <p>Prezime: {{ student.prezime }}</p>
+    <p>Username: {{ student.username }}</p>
+  </div>
+</div>

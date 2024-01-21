@@ -1,0 +1,22 @@
+<div>
+  <h2>Dostupni Konkursi</h2>
+
+  <ul *ngIf="konkursi.length > 0">
+    <li *ngFor="let konkurs of konkursi">
+      <h3>{{ konkurs.grad }}</h3>
+      <p>{{ konkurs.skolskaGodina }}</p>
+    </li>
+  </ul>
+
+  <p *ngIf="konkursi.length === 0">Nema dostupnih konkursa.</p>
+  <button (click)="navigateToPrijaviSe()">Prijavi se na konkurs</button>
+  <button (click)="goBack()">Nazad</button>
+  <button (click)="navigateToRangLista()">Rang Lista</button>
+  <button (click)="navigateToSobaInfo(student?.username)">Prikazi informacije o sobi</button>
+
+
+</div>
+
+
+
+
