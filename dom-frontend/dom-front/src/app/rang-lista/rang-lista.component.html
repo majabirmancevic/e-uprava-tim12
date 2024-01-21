@@ -1,6 +1,8 @@
-<div *ngFor="let student of prijavljeniStudenti">
-  <p>{{ student.ime }} {{ student.prezime }} - {{ student.bodovi }}</p>
-  <button *ngIf="isUpravnik()" (click)="dodeliSobu(student.id)">Dodeli sobu</button>
+<div *ngIf="rangLista">
+  <h2>Rang Lista</h2>
+  <ul>
+    <li *ngFor="let student of rangLista">
+      {{ student.ime }} {{ student.prezime }} - Bodovi: {{ student.bodovi }}
+    </li>
+  </ul>
 </div>
-
-<button (click)="vratiNaPocetnu()">Vrati se na početnu</button>

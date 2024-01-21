@@ -37,6 +37,8 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "soba_id")
     private Soba soba;
-    // Konstruktori, geteri, seteri...
-}
+
+    @ManyToOne
+    @JoinColumn(name = "konkurs_id")
+    private Konkurs konkurs;}
 

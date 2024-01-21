@@ -16,25 +16,28 @@ public class StudentDTO {
     private double prosek;
     private Kartica kartica;
     private double bodovi;
+    private Long konkursId;
+    private Long sobaId;
 
     // Konstruktori, geteri, seteri...
 
     // Dodajte ovaj konstruktor
-    public StudentDTO(Long id, String username, String password, String ime,
-                      int godinaStudiranja,
-                      double prosek) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.ime = ime;
-        this.prezime = prezime;
-        this.jmbg = jmbg;
-        this.godinaStudiranja = godinaStudiranja;
-        this.osvojeniBodovi = osvojeniBodovi;
-        this.prosek = prosek;
-        this.kartica = kartica;
-        this.bodovi = bodovi;
-    }
-
-    // Ostali atributi koje želite uključiti
+//    public StudentDTO(Long id, String username, String password, String ime,
+//                      int godinaStudiranja,
+//                      double prosek) {
+//        this.id = id;
+//        this.username = username;
+//        this.password = password;
+//        this.ime = ime;
+//        this.prezime = prezime;
+//        this.jmbg = jmbg;
+//        this.godinaStudiranja = godinaStudiranja;
+//        this.osvojeniBodovi = osvojeniBodovi;
+//        this.prosek = prosek;
+//        this.kartica = kartica;
+//        this.bodovi = bodovi;
+//    }
+//
+//    // Ostali atributi koje želite uključiti
+//}}
 }

@@ -1,0 +1,12 @@
+<div>
+  <h2>Dodeli sobu studentu</h2>
+  <form (ngSubmit)="submitForm()">
+    <label for="username">Korisničko ime:</label>
+    <input type="text" id="username" [(ngModel)]="username" name="username" required>
+
+    <label for="sobaId">ID sobe:</label>
+    <input type="number" id="sobaId" [(ngModel)]="sobaId" name="sobaId" required>
+
+    <button type="submit" [disabled]="!username || !sobaId">Dodeli sobu</button>
+  </form>
+</div>

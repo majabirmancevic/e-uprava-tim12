@@ -29,6 +29,10 @@ public class KonkursService {
     @Autowired
     private SobaRepository sobaRepository;
 
+    public Optional<Konkurs> findKonkursById(Long konkursId) {
+        return konkursRepository.findById(konkursId);
+    }
+
 
     public List<KonkursDTO> getAllKonkursi() {
         List<Konkurs> konkursi = konkursRepository.findAll();
@@ -67,29 +71,29 @@ public class KonkursService {
         konkursRepository.deleteById(id);
     }
 
-    public List<StudentDTO> getPrijavljeniStudenti(Long konkursId) {
-        Konkurs konkurs = konkursRepository.findById(konkursId).orElse(null);
-        if (konkurs != null) {
-            // Mapiraj prijavljene studente na DTO objekte
-            return konkurs.getPrijavljeniStudenti().stream()
-                    .map(this::mapToDTO)
-                    .collect(Collectors.toList());
-        }
-        return null;
-    }
-
-    private StudentDTO mapToDTO(Student student) {
-        // Logika za mapiranje entiteta Student na StudentDTO
-        // Uključujući i prikazivanje bodova
-        return new StudentDTO(
-                student.getId(),
-                student.getUsername(),
-                student.getIme(),
-                student.getPrezime(),
-                student.getGodinaStudiranja(),
-                student.getBodovi()  // Dodajte ovo ako želite prikazivanje bodova
-        );
-    }
+//    public List<StudentDTO> getPrijavljeniStudenti(Long konkursId) {
+//        Konkurs konkurs = konkursRepository.findById(konkursId).orElse(null);
+//        if (konkurs != null) {
+//            // Mapiraj prijavljene studente na DTO objekte
+//            return konkurs.getPrijavljeniStudenti().stream()
+//                    .map(this::mapToDTO)
+//                    .collect(Collectors.toList());
+//        }
+//        return null;
+//    }
+//
+//    private StudentDTO mapToDTO(Student student) {
+//        // Logika za mapiranje entiteta Student na StudentDTO
+//        // Uključujući i prikazivanje bodova
+//        return new StudentDTO(
+//                student.getId(),
+//                student.getUsername(),
+//                student.getIme(),
+//                student.getPrezime(),
+//                student.getGodinaStudiranja(),
+//                student.getBodovi()  // Dodajte ovo ako želite prikazivanje bodova
+//        );
+//    }
 
     public boolean studentPostoji(Long studentId) {
         return studentRepository.existsById(studentId);

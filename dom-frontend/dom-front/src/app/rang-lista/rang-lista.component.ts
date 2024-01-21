@@ -10,58 +10,12 @@ import { StudentDTO } from '../model/StudentDTO';
   styleUrls: ['./rang-lista.component.css']
 })
 export class RangListaComponent implements OnInit {
-  konkursId!: number;
-  prijavljeniStudenti: StudentDTO[] = [];
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private konkursService: KonkursService,
-    private securityService: SecurityService
-  ) {
-  }
+  rangLista: any[] = [];
+  constructor(private konkursService: KonkursService) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.konkursId = +params['konkursId'];
-      this.dohvatiRangListu();
+    this.konkursService.getRangLista().subscribe(data => {
+      this.rangLista = data;
     });
   }
-
-  dohvatiRangListu(): void {
-    this.konkursService.getRangLista(this.konkursId).subscribe(
-      (studenti) => {
-        this.prijavljeniStudenti = studenti;
-      },
-      (error) => {
-        console.error('Došlo je do greške prilikom dohvatanja rang liste:', error);
-      }
-    );
-  }
-
-  vratiNaPocetnu(): void {
-    this.router.navigate(['/']);
-  }
-
-  isUpravnik(): boolean {
-    return this.securityService.getRoleFromLS() === 'UPRAVNIK';
-  }
-
-  dodeliSobu(studentId: number | undefined): void {
-    if (studentId !== undefined) {
-      const sobaId = prompt('Unesite ID sobe:');
-      if (sobaId !== null && sobaId !== '') {
-        this.konkursService.dodeliSobu(this.konkursId, studentId, +sobaId)
-          .subscribe(
-            () => {
-              alert('Soba uspešno dodeljena!');
-            },
-            (error) => {
-              console.error('Greška prilikom dodele sobe:', error);
-              alert('Došlo je do greške prilikom dodele sobe.');
-            }
-          );
-      }
-    }
-}
 }

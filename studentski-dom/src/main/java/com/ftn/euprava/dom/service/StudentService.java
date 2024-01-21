@@ -45,12 +45,7 @@ public class StudentService {
         studentRepository.save(student);
     }
 
-//    private void izracunajBodove(Student student) {
-//        // Implementirajte logiku za izračunavanje bodova
-//        // Na primer, možete koristiti formulu koju ste naveli (broj bodova + prosjek) / broj godina studiranja
-//        double bodovi = (student.getOsvojeniBodovi() + student.getProsek()) / student.getGodinaStudiranja();
-//        student.setBodovi(bodovi);
-//    }
+
 
 
     public List<Student> getAllStudents() {

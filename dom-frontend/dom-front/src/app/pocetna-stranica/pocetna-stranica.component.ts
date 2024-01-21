@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { KonkursService } from '../service/konkurs.service';
 import { KonkursDTO } from '../model/KonkursDTO';
 import { SecurityService } from '../service/security.service';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-pocetna-stranica',
@@ -11,23 +12,17 @@ import { Router } from '@angular/router';
 })
 export class PocetnaStranicaComponent implements OnInit {
   konkursi: KonkursDTO[] = [];
+  student: any;
 
   constructor(
     private konkursService: KonkursService,
     private securityService: SecurityService,
-    private router: Router
+    private activateRoute: ActivatedRoute, private router: Router
   ) {}
 
   ngOnInit(): void {
-    if (this.securityService.isLoggedIn()) {
-      // Ako je korisnik ulogovan, dohvati konkurse
-      this.dohvatiKonkurse();
-    } else {
-      // Ako korisnik nije ulogovan, preusmeri ga na login stranicu
-      this.router.navigate(['/login']);
-    }
+    this.dohvatiKonkurse();
   }
-
   dohvatiKonkurse(): void {
     this.konkursService.getAllKonkursi().subscribe(
       (konkursi) => {
@@ -39,28 +34,19 @@ export class PocetnaStranicaComponent implements OnInit {
     );
   }
 
-  prijaviSeNaKonkurs(konkursId: number | undefined): void {
-    if (konkursId !== undefined) {
-      this.konkursService.prijaviSeNaKonkurs(konkursId).subscribe(
-        () => {
-          console.log('Uspešno ste se prijavili na konkurs.');
-          // Nakon uspešne prijave, ponovo dohvati konkurse
-          this.dohvatiKonkurse();
-        },
-        (error) => {
-          console.error('Došlo je do greške prilikom prijavljivanja na konkurs:', error);
-        }
-      );
-    }
+  goBack(){
+    this.router.navigate(['student',localStorage.getItem('jwt')]);
   }
 
-  prikaziRangListu(konkursId: number | undefined): void {
-    if (konkursId !== undefined) {
-      this.router.navigate(['/rang-lista', konkursId]);
-    }
+  navigateToPrijaviSe() {
+    this.router.navigate(['/prijavi-se']);
   }
 
-  isStudent(): boolean {
-    return this.securityService.getRoleFromLS() === 'STUDENT';
+  navigateToRangLista() {
+    this.router.navigate(['/rang-lista']);
+  }
+
+  navigateToSobaInfo(username: string) {
+    this.router.navigate([`/soba-info/${username}`]);
   }
 }

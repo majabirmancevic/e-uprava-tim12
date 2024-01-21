@@ -39,13 +39,13 @@ public class DataService {
         doktor2.setUloga("DOKTOR");
         doktor2.setEnabled(false);
 
-        Korisnik korisnik2 = new Korisnik();
-        korisnik2.setIme("Milica");
-        korisnik2.setPrezime("Radojevic");
-        korisnik2.setUsername("milica123");
-        korisnik2.setLozinka(passwordEncoder.encode("milica123"));
-        korisnik2.setUloga("STUDENT");
-        korisnik2.setEnabled(false);
+//        Korisnik korisnik2 = new Korisnik();
+//        korisnik2.setIme("Milica");
+//        korisnik2.setPrezime("Radojevic");
+//        korisnik2.setUsername("milica123");
+//        korisnik2.setLozinka(passwordEncoder.encode("milica123"));
+//        korisnik2.setUloga("STUDENT");
+//        korisnik2.setEnabled(false);
 
         Korisnik korisnik3 = new Korisnik();
         korisnik3.setIme("Maja");
@@ -54,6 +54,14 @@ public class DataService {
         korisnik3.setLozinka(passwordEncoder.encode("maja123"));
         korisnik3.setUloga("STUDENT");
         korisnik3.setEnabled(false);
+
+        Korisnik korisnik2 = new Korisnik();
+        korisnik2.setIme("Admin");
+        korisnik2.setPrezime("Adminovic");
+        korisnik2.setUsername("admin");
+        korisnik2.setLozinka(passwordEncoder.encode("admin123"));
+        korisnik2.setUloga("UPRAVNIK");
+        korisnik2.setEnabled(false);
 
 
 
