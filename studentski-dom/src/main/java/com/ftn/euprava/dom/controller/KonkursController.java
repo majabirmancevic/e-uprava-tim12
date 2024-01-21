@@ -72,19 +72,7 @@ public class KonkursController {
         return studentRepository.findByBodoviGreaterThan(0);
     }
 
-//    @PreAuthorize("hasRole('UPRAVNIK')")
-//    @PostMapping("/{konkursId}/dodeli-sobu")
-//    public ResponseEntity<Void> dodeliSobu(@PathVariable Long konkursId,
-//                                           @RequestParam Long studentId,
-//                                           @RequestParam Long sobaId) {
-//        // Provera da li student postoji i da li soba postoji
-//        if (konkursService.studentPostoji(studentId) && sobeService.sobaPostoji(sobaId)) {
-//            konkursService.dodeliSobu(studentId, sobaId);
-//            return ResponseEntity.ok().build();
-//        } else {
-//            return ResponseEntity.badRequest().build();
-//        }
-//    }
+
 
     @GetMapping("/rang-lista-soba")
     public ResponseEntity<List<Student>> getRangListaSobaNull() {
@@ -131,7 +119,6 @@ public class KonkursController {
                 Soba soba = student.getSoba();
 
                 if (soba != null) {
-                    // Možete direktno koristiti Student objekat za prikaz informacija
                     return ResponseEntity.ok(student);
                 }
             }

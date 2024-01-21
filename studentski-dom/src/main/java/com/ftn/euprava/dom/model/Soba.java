@@ -24,5 +24,4 @@ public class Soba {
 
 
 
-    // Konstruktori, geteri, seteri...
 }

@@ -23,22 +23,5 @@ public class Konkurs {
     @Column(name = "skolska_godina")
     private String skolskaGodina;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "konkurs_prijavljeni_studenti",
-//            joinColumns = @JoinColumn(name = "konkurs_id"),
-//            inverseJoinColumns = @JoinColumn(name = "student_id")
-//    )
-//    private List<Student> prijavljeniStudenti;
-
-    // Getteri i setteri
-
-//    public List<Student> getPrijavljeniStudenti() {
-//        return prijavljeniStudenti;
-//    }
-//
-//    public void setPrijavljeniStudenti(List<Student> prijavljeniStudenti) {
-//        this.prijavljeniStudenti = prijavljeniStudenti;
-//    }
 
 }

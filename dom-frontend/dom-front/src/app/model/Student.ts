@@ -13,7 +13,6 @@ export class Student {
   konkursId?: number;
   soba?: {
     id: number;
-    // Ostali podaci o sobi
   };
 
 }

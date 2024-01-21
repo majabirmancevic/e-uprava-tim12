@@ -9,7 +9,7 @@ import {Student} from "../model/Student"; // Importujte vaše DTO modele
   providedIn: 'root',
 })
 export class KonkursService {
-  private baseUrl = 'http://localhost:9000/api/konkursi'; // Promenite adresu prema vašem backend-u
+  private baseUrl = 'http://localhost:9000/api/konkursi';
 
   constructor(private http: HttpClient) {}
 

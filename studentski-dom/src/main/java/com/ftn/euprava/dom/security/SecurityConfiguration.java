@@ -56,23 +56,6 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
     }
 
 
-//   @Override
-//   protected void configure(HttpSecurity httpSecurity) throws Exception{
-//        httpSecurity.headers().cacheControl().disable();httpSecurity.cors();
-//        httpSecurity.headers().frameOptions().disable();
-//        httpSecurity.csrf().disable()
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-//                .authorizeRequests()
-//                .antMatchers( "*").permitAll()
-//                .antMatchers( "*").permitAll()
-////                .antMatchers(HttpMethod.POST, "/api/lekarsko-uverenje").permitAll()
-//                .antMatchers(HttpMethod.GET, "/api/konkursi").permitAll()
-//               .anyRequest().authenticated();
-//
-//       httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
-//   }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {

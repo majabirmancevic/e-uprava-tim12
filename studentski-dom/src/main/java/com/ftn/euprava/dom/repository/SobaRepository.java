@@ -4,6 +4,5 @@ import com.ftn.euprava.dom.model.Soba;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SobaRepository extends JpaRepository<Soba, Long> {
-    // Dodatne metode ako su potrebne
 }
 

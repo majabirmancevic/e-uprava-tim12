@@ -9,12 +9,11 @@ import { SecurityService } from '../service/security.service';
   styleUrls: ['./prijava.component.css'],
 })
 export class PrijavaComponent {
-  studentDTO: StudentDTO = {}; // Inicijalizujte objekat sa podacima studenta
+  studentDTO: StudentDTO = {};
 
   constructor(private konkursService: KonkursService) {}
 
   onSubmit() {
-    // Pozovite metodu za prijavu studenta na konkurs sa podacima iz forme
     this.konkursService.prijaviStudentaNaKonkurs(this.studentDTO)
       .subscribe(
         () => {

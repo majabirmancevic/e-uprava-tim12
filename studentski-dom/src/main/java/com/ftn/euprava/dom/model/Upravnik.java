@@ -24,6 +24,5 @@ public class Upravnik {
     private String prezime;
     private String jmbg;
 
-    // Konstruktori, geteri, seteri...
 }
 

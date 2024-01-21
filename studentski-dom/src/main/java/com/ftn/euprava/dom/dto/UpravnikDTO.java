@@ -10,7 +10,5 @@ public class UpravnikDTO {
     private String ime;
     private String prezime;
     private String jmbg;
-    // Ostali atributi koje želite uključiti
 
-    // Konstruktori, geteri, seteri...
 }

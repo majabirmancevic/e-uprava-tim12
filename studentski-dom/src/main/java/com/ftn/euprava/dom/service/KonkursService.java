@@ -41,7 +41,7 @@ public class KonkursService {
                 .collect(Collectors.toList());
     }
 
-    // ...
+
 
     private KonkursDTO mapToDTO(Konkurs konkurs) {
         KonkursDTO konkursDTO = new KonkursDTO();
@@ -71,29 +71,7 @@ public class KonkursService {
         konkursRepository.deleteById(id);
     }
 
-//    public List<StudentDTO> getPrijavljeniStudenti(Long konkursId) {
-//        Konkurs konkurs = konkursRepository.findById(konkursId).orElse(null);
-//        if (konkurs != null) {
-//            // Mapiraj prijavljene studente na DTO objekte
-//            return konkurs.getPrijavljeniStudenti().stream()
-//                    .map(this::mapToDTO)
-//                    .collect(Collectors.toList());
-//        }
-//        return null;
-//    }
-//
-//    private StudentDTO mapToDTO(Student student) {
-//        // Logika za mapiranje entiteta Student na StudentDTO
-//        // Uključujući i prikazivanje bodova
-//        return new StudentDTO(
-//                student.getId(),
-//                student.getUsername(),
-//                student.getIme(),
-//                student.getPrezime(),
-//                student.getGodinaStudiranja(),
-//                student.getBodovi()  // Dodajte ovo ako želite prikazivanje bodova
-//        );
-//    }
+
 
     public boolean studentPostoji(Long studentId) {
         return studentRepository.existsById(studentId);
